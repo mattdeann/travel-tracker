@@ -1,4 +1,4 @@
-import tripsData from './data/trips-data'
+
 
 // Query Selectors
 const main = document.querySelector("main");
