@@ -1,6 +1,7 @@
 // Query Selectors
 export const main = document.querySelector("main");
 export const aside = document.querySelector("aside");
+export const quoteButton = document.querySelector(".quote-button");
 
 
 // Imports
@@ -17,7 +18,8 @@ export const displayTravelerTrips = (traveler, allTrips, allDestinations) => {
       <article class="trip" style="background-image: url(${findDestinationByID(trip.destinationID, allDestinations).image})">
         <section class="trip-summary">
           <p class="detail date">${trip.date}</p>
-          <p class="detail place-and-time">${trip.duration} days in ${findDestinationByID(trip.destinationID, allDestinations).destination}</p>
+          <p class="detail duration">${trip.duration} day trip to</p>
+          <p class-"detail destination">${findDestinationByID(trip.destinationID, allDestinations).destination}</p>
           <p class="detail travelers">Travelers: ${trip.travelers}</p>
           <p class="detail status">Status: ${trip.status}</p>
         </section>

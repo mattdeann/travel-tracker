@@ -1,6 +1,7 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
 @import "variables";
-@import "trip";
+@import "nav_styles";
+@import "trip_styles";
 
 body {
   @include gridDisplay(2fr 8fr 2fr, 1fr 10fr 1fr);
@@ -18,12 +19,19 @@ header {
   grid-column: 1 / -1;
   grid-row: 1 / 2;
   @include headerFooterStyles;
+  box-shadow: 0px 0px 2px 2px whitesmoke;
 }
 
 nav {
   grid-column: 1 / 2;
   grid-row: 2 / 3;
   @include sideStyles;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  @include navStyles;
 }
 
 main {
@@ -36,6 +44,7 @@ main {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 15px;
   padding: 10px;
+  overflow-y: scroll;
 
   @include tripStyles;
   
