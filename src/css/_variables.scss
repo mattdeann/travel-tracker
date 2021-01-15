@@ -1,5 +1,4 @@
 // DOCUMENT
-$primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
 
 $font: 'Courier New', Courier, monospace;
 
@@ -16,8 +15,15 @@ $font: 'Courier New', Courier, monospace;
   justify-content: $justify;
 };
 
+@mixin boxStyles() {
+  background-color: $darker-purple;
+  border: $grid-border;
+}
+
 // COLORS
-$dark: #372E65;
+$darker-purple: #120f21;
+
+$dark-purple: #4d3aa0;
 
 $pink: #FF6EBD;
 
@@ -27,6 +33,5 @@ $blue: #137BED;
 
 $lightblue: #02C9FE;
 
-$fakeBorder: 2px solid black;
+$grid-border: 2px solid $pink;
 
-// set up basic grid and flex controls

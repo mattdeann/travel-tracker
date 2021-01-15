@@ -2,40 +2,41 @@
 @import "variables";
 
 body {
-  background: $primary-background;
-  font-family: $font;
+  @include gridDisplay(2fr 8fr 2fr, 1fr 10fr 1fr);
   height: calc(100vh - 20px);
   width: calc(100vw - 20px);
-  @include gridDisplay(2fr 8fr 2fr, 1fr 10fr 1fr);
+  background: linear-gradient(to bottom right, $darker-purple, $darker-purple,  $dark-purple);
+  font-family: $font;
+  color: pink;
 }
 
 header {
-  border: $fakeBorder;
   grid-column: 1 / -1;
   grid-row: 1 / 2;
+  @include boxStyles();
 }
 
 nav {
-  border: $fakeBorder;
   grid-column: 1 / 2;
   grid-row: 2 / 3;
+  @include boxStyles();
 }
 
 main {
-  border: $fakeBorder;
   grid-column: 2 / 3;
   grid-row: 2 / 3;
+  @include boxStyles();
 }
 
 aside {
-  border: $fakeBorder;
   grid-column: 3 / 4;
   grid-row: 2 / 3;
+  @include boxStyles();
 }
 
 footer {
-  border: $fakeBorder;
   grid-column: 1 / -1;
   grid-row: 3 / 4;
+  @include boxStyles();
 }
 
