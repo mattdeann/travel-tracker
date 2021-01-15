@@ -1,8 +1,6 @@
 // Query Selectors
 export const main = document.querySelector("main");
-
-
-
+export const aside = document.querySelector("aside");
 
 // Functions
 
@@ -29,8 +27,15 @@ export const findDestinationByID = (id, destinationsData) => destinationsData.fi
 
 export const totalCostAllTrips = (traveler, allTrips, allDestinations) => {
   const travelerTrips = allTrips.filter(trip => trip.userID === traveler.id);
-  travelerTrips.reduce(trip => {
 
-  })
-  
+  const total = travelerTrips.reduce((totalCost, trip) => {
+    const destination = findDestinationByID(trip.destinationID, allDestinations);
+    const tripTotal = (destination.estimatedLodgingCostPerDay * trip.duration) + (destination.estimatedFlightCostPerPerson * trip.travelers);
+
+    return totalCost += tripTotal;
+  }, 0)
+
+  aside.insertAdjacentHTML('beforeend', `<p>Total Spent<br>${total.toLocaleString("en-US", {style: "currency", currency: "USD"})}`)
 }
+
+// find all trips, for each trip access the destination and do some maths

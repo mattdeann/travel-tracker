@@ -7,7 +7,7 @@ import './css/base.scss';
 console.log('This is the JavaScript entry file - your code begins here.');
 
 // QUERY SELECTORS
-import { mainDisplay } from './domUpdates'
+import { mainDisplay, totalCostAllTrips } from './domUpdates'
 
 // JS IMPORTS
 import Traveler from './users/traveler';
@@ -38,7 +38,7 @@ const populateTravelerMain = () => {
     getDestinationsData()
   ]).then(response => {
     displayTravelerTrips(response[0], response[1], response[2]);
-    console.log(tripsData);
+    totalCostAllTrips(response[0], response[1], response[2])
   });
 }
 
