@@ -5,6 +5,10 @@ import './css/base.scss';
 import './images/turing-logo.png'
 
 console.log('This is the JavaScript entry file - your code begins here.');
+
+// QUERY SELECTORS
+import { mainDisplay } from './domUpdates'
+
 // JS IMPORTS
 import Traveler from './users/traveler';
 import { displayTravelerTrips } from './domUpdates';
@@ -12,10 +16,10 @@ import { getData, getTravelersData } from './apiRequests';
 
 
 // Global Variables
-let travelersData;
+
 let tripsData;
 let destinationsData;
-
+let traveler;
 
 // const traveler = new Traveler(travelersData[0]);
 
@@ -25,21 +29,22 @@ document.addEventListener("load", start);
 
 // Functions
 function start() {
-
-  displayTravelerTrips(traveler);
+  displayTravelerTrips(traveler, tripsData);
 }
 
-const getAllData = () => {
-  getTravelerData();
-  getTripsData();
-  getDestinationsData();
+const populateTravelerMain = () => {
+  Promise.all([getTravelerData(),
+    getTripsData(),
+    getDestinationsData()
+  ]).then(response => {
+    displayTravelerTrips(response[0], response[1])
+  });
 }
 
 const getTravelerData = () => {
-  return getData('travelers')
+  return getData('travelers/1')
     .then(response => {
-      console.log(response);
-      travelersData = response.travelers;
+      return traveler = response;
     })
     .catch(error => console.log(error));
 }
@@ -47,7 +52,7 @@ const getTravelerData = () => {
 const getTripsData = () => {
   return getData('trips')
     .then(response => {
-      tripsData = response.trips;
+      return tripsData = response.trips;
     })
     .catch(error => console.log(error));
 }
@@ -55,13 +60,12 @@ const getTripsData = () => {
 const getDestinationsData = () => {
   return getData('destinations')
     .then(response => {
-      destinationsData = response.destinations;
+      return destinationsData = response.destinations;
     })
     .catch(error => console.log(error));
 }
 
-getAllData();
-
+populateTravelerMain();
 
 
 
