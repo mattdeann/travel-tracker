@@ -27,10 +27,11 @@ export const findDestinationByID = (id, destinationsData) => destinationsData.fi
 
 export const totalCostAllTrips = (traveler, allTrips, allDestinations) => {
   const travelerTrips = allTrips.filter(trip => trip.userID === traveler.id);
+  const comishPercent = 1.1;
 
   const total = travelerTrips.reduce((totalCost, trip) => {
     const destination = findDestinationByID(trip.destinationID, allDestinations);
-    const tripTotal = (destination.estimatedLodgingCostPerDay * trip.duration) + (destination.estimatedFlightCostPerPerson * trip.travelers);
+    const tripTotal = (destination.estimatedLodgingCostPerDay * trip.duration) + (destination.estimatedFlightCostPerPerson * trip.travelers) * comishPercent;
 
     return totalCost += tripTotal;
   }, 0)
