@@ -37,7 +37,7 @@ const populateTravelerMain = () => {
     getTripsData(),
     getDestinationsData()
   ]).then(response => {
-    displayTravelerTrips(response[0], response[1]);
+    displayTravelerTrips(response[0], response[1], response[2]);
     console.log(tripsData);
   });
 }
