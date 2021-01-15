@@ -1,0 +1,32 @@
+// DOCUMENT
+$primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+
+$font: 'Courier New', Courier, monospace;
+
+// MIXINS
+@mixin gridDisplay($columns, $rows) {
+  display: grid;
+  grid-template-columns: $columns;
+  grid-template-rows: $rows;
+};
+
+@mixin flexDisplay($direction, $justify) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+};
+
+// COLORS
+$dark: #372E65;
+
+$pink: #FF6EBD;
+
+$purple: #AE46D2;
+
+$blue: #137BED;
+
+$lightblue: #02C9FE;
+
+$fakeBorder: 2px solid black;
+
+// set up basic grid and flex controls
