@@ -27,7 +27,7 @@ $font: BlenderProBold, sans-serif;
   margin: 3px;
 }
 
-@mixin hidden() {
+.hidden {
   display: none;
 }
 

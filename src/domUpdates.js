@@ -2,6 +2,10 @@
 export const main = document.querySelector("main");
 export const aside = document.querySelector("aside");
 
+
+// Imports
+import datepicker from 'js-datepicker';
+
 // Functions
 
 // USING TRAVELERTRIPS IN MULTIPLE FUNCTIONS, SHOULD TRAVELER TRIPS BE HERE OR IN TRAVELER??
