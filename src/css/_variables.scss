@@ -15,23 +15,35 @@ $font: BlenderProBold, sans-serif;
   justify-content: $justify;
 };
 
-@mixin boxStyles() {
-  background-color: $darker-purple;
+@mixin headerFooterStyles() {
+  background: linear-gradient(to bottom, $dark-purple, $darker-purple);
   border: $grid-border;
+  margin: 3px;
+}
+
+@mixin sideStyles() {
+  background: linear-gradient(to bottom, $purple, $pink, $light-blue, $blue);
+  border: $grid-border;
+  margin: 3px;
+}
+
+@mixin hidden() {
+  display: none;
 }
 
 // COLORS
+$black: #09071a;
+
 $darker-purple: #191449;
 
 $dark-purple: #3D0E53;
 
-$pink: #D61289;
-
 $purple: #B05CB4;
+
+$pink: #D61289;
 
 $blue: #2B7FB5;
 
-$lightblue: #18F5FE;
+$light-blue: #18F5FE;
 
 $grid-border: 2px solid $pink;
-
