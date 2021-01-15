@@ -2,7 +2,7 @@
 import './css/base.scss';
 
 // IMAGE IMPORTS
-import './images/turing-logo.png'
+// import './images/turing-logo.png'
 
 console.log('This is the JavaScript entry file - your code begins here.');
 
@@ -37,7 +37,8 @@ const populateTravelerMain = () => {
     getTripsData(),
     getDestinationsData()
   ]).then(response => {
-    displayTravelerTrips(response[0], response[1])
+    displayTravelerTrips(response[0], response[1]);
+    console.log(tripsData);
   });
 }
 
