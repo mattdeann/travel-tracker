@@ -10,10 +10,10 @@ export const displayTravelerTrips = (traveler, allTrips, allDestinations) => {
   travelerTrips.forEach(trip => {
     main.insertAdjacentHTML('beforeend', `
       <article class="trip">
-        <p class="detail destination">Destination: ${findDestinationByID(trip.destinationID, allDestinations).destination}</p>
+        <p class="detail date">${trip.date}</p>
+        <p class="detail place-and-time">${trip.duration} days in ${findDestinationByID(trip.destinationID, allDestinations).destination}</p>
+        <img src="${findDestinationByID(trip.destinationID, allDestinations).image}" alt="findDestinationByID(trip.destinationID, allDestinations).alt" height="100px" width="100px">
         <p class="detail travelers">Travelers: ${trip.travelers}</p>
-        <p class="detail date">Date: ${trip.date}</p>
-        <p class="detail duration">Duration: ${trip.duration}</p>
         <p class="detail status">Status: ${trip.status}</p>
       </article>
     `);
