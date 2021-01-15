@@ -27,7 +27,7 @@ let traveler;
 // Event Listeners
 document.addEventListener("load", start);
 
-// Functions
+// // Functions
 function start() {
   displayTravelerTrips(traveler, tripsData);
 }
@@ -43,7 +43,7 @@ const populateTravelerMain = () => {
 }
 
 const getTravelerData = () => {
-  return getData('travelers/1')
+  return getData('travelers/2')
     .then(response => {
       return traveler = response;
     })
@@ -66,6 +66,7 @@ const getDestinationsData = () => {
     .catch(error => console.log(error));
 }
 
+// FUNCTION CALLED HERE TO DEAL WITH CALL STACK
 populateTravelerMain();
 
 

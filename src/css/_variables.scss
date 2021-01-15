@@ -1,6 +1,6 @@
 // DOCUMENT
 
-$font: 'Courier New', Courier, monospace;
+$font: BlenderProBold, sans-serif;
 
 // MIXINS
 @mixin gridDisplay($columns, $rows) {
@@ -21,17 +21,17 @@ $font: 'Courier New', Courier, monospace;
 }
 
 // COLORS
-$darker-purple: #120f21;
+$darker-purple: #191449;
 
-$dark-purple: #4d3aa0;
+$dark-purple: #3D0E53;
 
-$pink: #FF6EBD;
+$pink: #D61289;
 
-$purple: #AE46D2;
+$purple: #B05CB4;
 
-$blue: #137BED;
+$blue: #2B7FB5;
 
-$lightblue: #02C9FE;
+$lightblue: #18F5FE;
 
 $grid-border: 2px solid $pink;
 

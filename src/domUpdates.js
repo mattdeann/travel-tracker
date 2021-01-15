@@ -6,8 +6,6 @@ export const main = document.querySelector("main");
 
 // Functions
 export const displayTravelerTrips = (traveler, allTrips) => {
-// use traveler id to filter all trips, grab data in a readable way
-// might not end up needing this
   const travelerTrips = allTrips.filter(trip => trip.userID === traveler.id);
   travelerTrips.forEach(trip => {
     main.insertAdjacentHTML('beforeend', `
