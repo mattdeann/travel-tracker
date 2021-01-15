@@ -1,4 +1,4 @@
-import getData from '../apiCalls';
+import { getData } from '../apiCalls';
 
 const source = 'destinations';
 let destinationsData;

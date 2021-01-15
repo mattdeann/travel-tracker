@@ -1,4 +1,4 @@
-function getData(dataset) {
+export const getData = dataset => {
   let data = [];
   fetch(`http://localhost:3001/api/v1/${dataset}`)
     .then(response => response.json())
@@ -10,5 +10,3 @@ function getData(dataset) {
     .catch(error => console.log('error', error));
   return data;
 } 
-
-export default getData;
