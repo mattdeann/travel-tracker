@@ -7,7 +7,8 @@ export const dateInput = document.querySelector(".form-date");
 export const durationInput = document.querySelector(".form-duration");
 export const numTravelersInput = document.querySelector(".form-travelers");
 export const destinationInput = document.querySelector(".form-destination");
-export const tripQuoteDisplay = document.querySelector(".trip-quote");
+export const modal = document.querySelector(".modal");
+export const estimateDisplay = document.querySelector(".estimate-display");
 
 
 // Functions
@@ -52,17 +53,17 @@ export const displayQuote = (destinationsRepo) => {
   const tripImage = destinationsRepo.findImage(destinationID);
   const tripAlt = destinationsRepo.findImageAlt(destinationID);
 
-  tripQuoteDisplay.insertAdjacentHTML('beforeend', `
-  <article class="trip-quote-popup" style="background-image: url${tripImage} alt=${tripAlt}>
-    <section class="estimate-display">
-      Your estimated cost is: ${tripCost.toLocaleString("en-US", {style: "currency", currency: "USD"})}
-    </section>
-  </article>
-  `)
-  tripQuoteDisplay.classList.remove("hidden");
+  estimateDisplay.innerText = `Your estimated cost is: ${tripCost.toLocaleString("en-US", {style: "currency", currency: "USD"})}`;
+
+  modal.style.display = "block";
+}
+
+export const hideQuote = () => {
+  modal.style.display = "none";
 }
 
 
 function storeQuote() {
 
 }
+

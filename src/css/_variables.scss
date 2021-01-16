@@ -31,6 +31,10 @@ $font: BlenderProBold, sans-serif;
   display: none;
 }
 
+.pop-up {
+  z-index: 1;
+}
+
 // COLORS
 $black: #09071a;
 

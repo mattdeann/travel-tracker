@@ -7,13 +7,16 @@ console.log('This is the JavaScript entry file - your code begins here.');
 
 // QUERY SELECTORS
 const quoteButton = document.querySelector('.quote-button');
+const closeQuoteButton = document.querySelector('.close');
+// 
 
 // JS IMPORTS
 import Traveler from './jsClasses/traveler';
 import { 
   displayTravelerTrips, 
   displayTravelerTotal, 
-  displayQuote 
+  displayQuote, 
+  hideQuote 
 } from './domUpdates';
 
 import { 
@@ -63,7 +66,12 @@ const createQuote = () => {
   displayQuote(destinationsRepo);
 }
 
+const closeModal = () => {
+  hideQuote();
+}
+
 
 
 // Event Listeners
 quoteButton.addEventListener('click', createQuote);
+closeQuoteButton.addEventListener('click', closeModal);
