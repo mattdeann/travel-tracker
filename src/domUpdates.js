@@ -14,10 +14,11 @@ export const estimateDisplay = document.querySelector(".estimate-display");
 // Functions
 export const displayTravelerTrips = (traveler, tripsRepo, destinationsRepo) => {
   const travelerTrips = tripsRepo.filterTravelerTrips(traveler.id);
+  main.innerHTML = '';
 
   travelerTrips.forEach(trip => {
     main.insertAdjacentHTML('beforeend', `
-      <article class="trip" style="background-image: url(${destinationsRepo.findDestinationByID(trip.destinationID).image})">
+      <article class="trip" style="background-image: url(${destinationsRepo.findDestinationByID(trip.destinationID).image}" alt ="${destinationsRepo.findDestinationByID(trip.destinationID).alt}">
         <section class="trip-summary">
           <p class="detail date">${trip.date}</p>
           <p class="detail duration">${trip.duration} day trip to</p>
@@ -64,24 +65,24 @@ export const hideQuote = () => {
 }
 
 
-export const displayPendingTrip = destinationsRepo => {
-  const date = dateInput.value;
-  const duration = durationInput.value;
-  const travelers = numTravelersInput.value;
-  const destinationID = destinationsRepo.findIDByName(destinationInput.value);
-  const tripImage = destinationsRepo.findImage(destinationID);
-  const tripAlt = destinationsRepo.findImageAlt(destinationID);
+// export const displayPendingTrip = destinationsRepo => {
+//   const date = dateInput.value;
+//   const duration = durationInput.value;
+//   const travelers = numTravelersInput.value;
+//   const destinationID = destinationsRepo.findIDByName(destinationInput.value);
+//   const tripImage = destinationsRepo.findImage(destinationID);
+//   const tripAlt = destinationsRepo.findImageAlt(destinationID);
   
-  main.insertAdjacentHTML('beforeend', `
-      <article class="trip" style="background-image: url(${destinationsRepo.findDestinationByID(destinationID).image})" alt="${tripAlt}">
-        <section class="trip-summary">
-          <p class="detail date">${date}</p>
-          <p class="detail duration">${duration} day trip to</p>
-          <p class-"detail destination">${destinationsRepo.findDestinationByID(destinationID).destination}</p>
-          <p class="detail travelers">Travelers: ${travelers}</p>
-          <p class="detail status">Status: Pending</p>
-        </section>
-      </article>
-    `);
-}
+//   main.insertAdjacentHTML('beforeend', `
+//       <article class="trip" style="background-image: url(${tripImage})" alt="${tripAlt}">
+//         <section class="trip-summary">
+//           <p class="detail date">${date}</p>
+//           <p class="detail duration">${duration} day trip to</p>
+//           <p class-"detail destination">${destinationsRepo.findDestinationByID(destinationID).destination}</p>
+//           <p class="detail travelers">Travelers: ${travelers}</p>
+//           <p class="detail status">Status: Pending</p>
+//         </section>
+//       </article>
+//     `);
+// }
 

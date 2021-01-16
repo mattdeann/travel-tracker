@@ -8,7 +8,11 @@ console.log('This is the JavaScript entry file - your code begins here.');
 // QUERY SELECTORS
 const quoteButton = document.querySelector('.quote-button');
 const closeQuoteButton = document.querySelector('.close');
-const requestButton = document.querySelector('.request-button')
+const requestButton = document.querySelector('.request-button');
+const dateInput = document.querySelector(".form-date");
+const durationInput = document.querySelector(".form-duration");
+const numTravelersInput = document.querySelector(".form-travelers");
+const destinationInput = document.querySelector(".form-destination");
 
 // JS IMPORTS
 import Traveler from './jsClasses/traveler';
@@ -17,11 +21,11 @@ import {
   displayTravelerTotal, 
   displayQuote, 
   hideQuote,
-  displayPendingTrip
 } from './domUpdates';
 
 import { 
-  getData 
+  getData,
+  postTrip
 } from './apiRequests';
 
 import DestinationsRepo from './jsClasses/destinationsRepo';
@@ -72,13 +76,19 @@ const closeModal = () => {
 }
 
 const submitTripRequest = () => {
-  displayPendingTrip(destinationsRepo);
-  hideQuote();
-}
+  const date = dateInput.value.toString();
+  const formattedDate = date.replaceAll("-", "/");
+  const duration = durationInput.value;
+  const travelers = numTravelersInput.value;
+  const destinationID = destinationsRepo.findIDByName(destinationInput.value);
 
+  Promise.resolve(postTrip(tripsRepo.allTrips.trips.length + 1, traveler.id, destinationID, travelers, formattedDate, duration))
+    .then(hideQuote())
+    .then(populateTravelerMain())
+}
 
 
 // Event Listeners
 quoteButton.addEventListener('click', createQuote);
 closeQuoteButton.addEventListener('click', closeModal);
-requestButton.addEventListener('click', submitTripRequest)
+requestButton.addEventListener('click', submitTripRequest);
