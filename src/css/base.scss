@@ -1,7 +1,55 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-;
+@import "variables";
+@import "trip";
 
 body {
-  background: $primary-background;
+  @include gridDisplay(2fr 8fr 2fr, 1fr 10fr 1fr);
+  height: calc(100vh - 20px);
+  width: calc(100vw - 20px);
+  background: linear-gradient(to bottom right, $black, $darker-purple);
+  font-family: $font;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 14px; 
+  color: $light-blue;
 }
+
+header {
+  grid-column: 1 / -1;
+  grid-row: 1 / 2;
+  @include headerFooterStyles;
+}
+
+nav {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  @include sideStyles;
+}
+
+main {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  background: linear-gradient(to bottom, $purple, $pink);
+  border: $grid-border;
+  margin: 3px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 15px;
+  padding: 10px;
+
+  @include tripStyles;
+  
+}
+
+aside {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+  @include sideStyles;
+}
+
+footer {
+  grid-column: 1 / -1;
+  grid-row: 3 / 4;
+  @include headerFooterStyles;
+}
+
