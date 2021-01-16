@@ -1,13 +1,15 @@
 // Query Selectors
 export const main = document.querySelector("main");
 export const aside = document.querySelector("aside");
-export const quoteButton = document.querySelector(".quote-button");
+export const dateInput = document.querySelector(".form-date");
+export const durationInput = document.querySelector(".form-duration");
+export const numTravelersInput = document.querySelector(".form-travelers");
+export const destinationInput = document.querySelector(".form-destination");
 
 
 // Functions
 export const displayTravelerTrips = (traveler, tripsRepo, destinationsRepo) => {
   const travelerTrips = tripsRepo.filterTravelerTrips(traveler.id);
-  console.log(travelerTrips);
 
   travelerTrips.forEach(trip => {
     main.insertAdjacentHTML('beforeend', `
@@ -35,4 +37,13 @@ export const displayTravelerTotal = (traveler, tripsRepo, destinationsRepo) => {
   }, 0)
 
   aside.insertAdjacentHTML('beforeend', `<p>Total Spent<br>${total.toLocaleString("en-US", {style: "currency", currency: "USD"})}`)
+}
+
+export const displayQuote = (destinationsRepo) => {
+  duration = durationInput.value;
+  travelers = numTravelersInput.value;
+  destinationID = destinationInput.value;
+
+
+  destinationsRepo.calcTripCost(duration, travelers, destinationID)
 }

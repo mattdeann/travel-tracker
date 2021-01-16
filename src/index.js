@@ -7,26 +7,30 @@ import './css/base.scss';
 console.log('This is the JavaScript entry file - your code begins here.');
 
 // QUERY SELECTORS
+const quoteButton = document.querySelector('.quote-button');
 
 // JS IMPORTS
 import Traveler from './jsClasses/traveler';
-import { displayTravelerTrips, displayTravelerTotal } from './domUpdates';
-import { getData } from './apiRequests';
+import { 
+  displayTravelerTrips, 
+  displayTravelerTotal, 
+  displayQuote 
+} from './domUpdates';
+import { 
+  getData 
+} from './apiRequests';
 import DestinationsRepo from './jsClasses/destinationsRepo'
 import TripsRepo from './jsClasses/tripsRepo'
 
 
 // Global Variables
-
 let tripsRepo;
 let destinationsRepo;
 let traveler;
 
-// const traveler = new Traveler(travelersData[0]);
-
 
 // Event Listeners
-
+quoteButton.addEventListener('click', displayQuote)
 
 // Functions
 const populateTravelerMain = () => {
