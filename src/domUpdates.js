@@ -43,15 +43,12 @@ export const displayTravelerTotal = (traveler, tripsRepo, destinationsRepo) => {
   aside.insertAdjacentHTML('beforeend', `<p>Total Spent<br>${total.toLocaleString("en-US", {style: "currency", currency: "USD"})}`)
 }
 
-export const displayQuote = (destinationsRepo) => {
-  const date = dateInput.value;
+export const displayQuote = destinationsRepo => {
   const duration = durationInput.value;
   const travelers = numTravelersInput.value;
   const destinationID = destinationsRepo.findIDByName(destinationInput.value);
 
   const tripCost = destinationsRepo.calcTripCost(duration, travelers, destinationID);
-  const tripImage = destinationsRepo.findImage(destinationID);
-  const tripAlt = destinationsRepo.findImageAlt(destinationID);
 
   estimateDisplay.innerText = `Your estimated cost is: ${tripCost.toLocaleString("en-US", {style: "currency", currency: "USD"})}`;
 
@@ -59,11 +56,32 @@ export const displayQuote = (destinationsRepo) => {
 }
 
 export const hideQuote = () => {
+  dateInput.value = null;
+  durationInput.value = null;
+  numTravelersInput.value = null;
+  destinationInput.value - null;
   modal.style.display = "none";
 }
 
 
-function storeQuote() {
-
+export const displayPendingTrip = destinationsRepo => {
+  const date = dateInput.value;
+  const duration = durationInput.value;
+  const travelers = numTravelersInput.value;
+  const destinationID = destinationsRepo.findIDByName(destinationInput.value);
+  const tripImage = destinationsRepo.findImage(destinationID);
+  const tripAlt = destinationsRepo.findImageAlt(destinationID);
+  
+  main.insertAdjacentHTML('beforeend', `
+      <article class="trip" style="background-image: url(${destinationsRepo.findDestinationByID(destinationID).image})" alt="${tripAlt}">
+        <section class="trip-summary">
+          <p class="detail date">${date}</p>
+          <p class="detail duration">${duration} day trip to</p>
+          <p class-"detail destination">${destinationsRepo.findDestinationByID(destinationID).destination}</p>
+          <p class="detail travelers">Travelers: ${travelers}</p>
+          <p class="detail status">Status: Pending</p>
+        </section>
+      </article>
+    `);
 }
 
