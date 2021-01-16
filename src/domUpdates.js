@@ -5,6 +5,7 @@ export const dateInput = document.querySelector(".form-date");
 export const durationInput = document.querySelector(".form-duration");
 export const numTravelersInput = document.querySelector(".form-travelers");
 export const destinationInput = document.querySelector(".form-destination");
+export const tripQuoteDisplay = document.querySelector(".trip-quote");
 
 
 // Functions
@@ -39,11 +40,12 @@ export const displayTravelerTotal = (traveler, tripsRepo, destinationsRepo) => {
   aside.insertAdjacentHTML('beforeend', `<p>Total Spent<br>${total.toLocaleString("en-US", {style: "currency", currency: "USD"})}`)
 }
 
-export const displayQuote = (destinationsRepo) => {
-  duration = durationInput.value;
-  travelers = numTravelersInput.value;
-  destinationID = destinationInput.value;
-
+export const calculateQuote = (destinationsRepo) => {
+  const duration = durationInput.value;
+  const travelers = numTravelersInput.value;
+  const destinationID = destinationInput.value;
 
   destinationsRepo.calcTripCost(duration, travelers, destinationID)
+
+
 }

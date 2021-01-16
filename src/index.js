@@ -3,7 +3,6 @@ import './css/base.scss';
 
 // IMAGE IMPORTS
 // import './images/turing-logo.png'
-
 console.log('This is the JavaScript entry file - your code begins here.');
 
 // QUERY SELECTORS
@@ -14,11 +13,13 @@ import Traveler from './jsClasses/traveler';
 import { 
   displayTravelerTrips, 
   displayTravelerTotal, 
-  displayQuote 
+  calculateQuote 
 } from './domUpdates';
+
 import { 
   getData 
 } from './apiRequests';
+
 import DestinationsRepo from './jsClasses/destinationsRepo'
 import TripsRepo from './jsClasses/tripsRepo'
 
@@ -28,11 +29,7 @@ let tripsRepo;
 let destinationsRepo;
 let traveler;
 
-
-// Event Listeners
-quoteButton.addEventListener('click', displayQuote)
-
-// Functions
+// Initial Data and DOM Population
 const populateTravelerMain = () => {
   Promise.all([getTravelerData(),
     getTripsData(),
@@ -58,18 +55,15 @@ const getTripsData = () => {
 const getDestinationsData = () => {
   return getData('destinations')
 }
-
 // FUNCTION CALLED HERE TO DEAL WITH CALL STACK
 populateTravelerMain();
 
+// Function Declarations
 
-// ONLY CALLS FROM HERE ON OUT, NO GLOBAL DATA STORAGE
-// SHOULD ALWAYS USE THE RETURN OF ANOTHER FUNCTION
+const displayQuote = () => {
+  calculateQuote(destinationsRepo);
+}
 
 
-// destinationRepo: on event trigger, take in duration, num of travleers, and destination to calculate trip estimate from destinaton repo
-
-// return that calculation here (need function
-// return destination image here (need function)
-
-// domUpdates: also call a domUpdates method that takes in the calculation and takes in the destination image, and diplats the HIDDEN DIV (i need sound effects lol)
+// Event Listeners
+quoteButton.addEventListener('click', displayQuote);
