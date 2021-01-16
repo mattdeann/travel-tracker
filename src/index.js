@@ -7,63 +7,52 @@ import './css/base.scss';
 console.log('This is the JavaScript entry file - your code begins here.');
 
 // QUERY SELECTORS
-import { mainDisplay, totalCostAllTrips } from './domUpdates'
 
 // JS IMPORTS
-import Traveler from './css/jsClasses/traveler';
-import { displayTravelerTrips } from './domUpdates';
-import { getData, getTravelersData } from './apiRequests';
+import Traveler from './jsClasses/traveler';
+import { displayTravelerTrips, displayTravelerTotal } from './domUpdates';
+import { getData } from './apiRequests';
+import DestinationsRepo from './jsClasses/destinationsRepo'
+import TripsRepo from './jsClasses/tripsRepo'
 
 
 // Global Variables
 
-let tripsData;
-let destinationsData;
+let tripsRepo;
+let destinationsRepo;
 let traveler;
 
 // const traveler = new Traveler(travelersData[0]);
 
 
 // Event Listeners
-document.addEventListener("load", start);
 
-// // Functions
-function start() {
-  displayTravelerTrips(traveler, tripsData);
-}
 
+// Functions
 const populateTravelerMain = () => {
   Promise.all([getTravelerData(),
     getTripsData(),
     getDestinationsData()
-  ]).then(response => {
-    displayTravelerTrips(response[0], response[1], response[2]);
-    totalCostAllTrips(response[0], response[1], response[2])
-  });
+  ])
+    .then(response => {
+      traveler = new Traveler(response[0]);
+      tripsRepo = new TripsRepo(response[1]);
+      destinationsRepo = new DestinationsRepo(response[2]);
+      displayTravelerTrips(traveler, tripsRepo, destinationsRepo);
+      displayTravelerTotal(traveler, tripsRepo, destinationsRepo);
+    });
 }
 
 const getTravelerData = () => {
   return getData('travelers/2')
-    .then(response => {
-      return traveler = response;
-    })
-    .catch(error => console.log(error));
 }
 
 const getTripsData = () => {
   return getData('trips')
-    .then(response => {
-      return tripsData = response.trips;
-    })
-    .catch(error => console.log(error));
 }
 
 const getDestinationsData = () => {
   return getData('destinations')
-    .then(response => {
-      return destinationsData = response.destinations;
-    })
-    .catch(error => console.log(error));
 }
 
 // FUNCTION CALLED HERE TO DEAL WITH CALL STACK

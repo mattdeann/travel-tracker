@@ -3,19 +3,19 @@ export const main = document.querySelector("main");
 export const aside = document.querySelector("aside");
 export const quoteButton = document.querySelector(".quote-button");
 
+
 // Functions
+export const displayTravelerTrips = (traveler, tripsRepo, destinationsRepo) => {
+  const travelerTrips = tripsRepo.filterTravelerTrips(traveler.id);
+  console.log(travelerTrips);
 
-// USING TRAVELERTRIPS IN MULTIPLE FUNCTIONS, SHOULD TRAVELER TRIPS BE HERE OR IN TRAVELER??
-
-export const displayTravelerTrips = (traveler, allTrips, allDestinations) => {
-  const travelerTrips = allTrips.filter(trip => trip.userID === traveler.id);
   travelerTrips.forEach(trip => {
     main.insertAdjacentHTML('beforeend', `
-      <article class="trip" style="background-image: url(${findDestinationByID(trip.destinationID, allDestinations).image})">
+      <article class="trip" style="background-image: url(${destinationsRepo.findDestinationByID(trip.destinationID).image})">
         <section class="trip-summary">
           <p class="detail date">${trip.date}</p>
           <p class="detail duration">${trip.duration} day trip to</p>
-          <p class-"detail destination">${findDestinationByID(trip.destinationID, allDestinations).destination}</p>
+          <p class-"detail destination">${destinationsRepo.findDestinationByID(trip.destinationID).destination}</p>
           <p class="detail travelers">Travelers: ${trip.travelers}</p>
           <p class="detail status">Status: ${trip.status}</p>
         </section>
@@ -24,21 +24,14 @@ export const displayTravelerTrips = (traveler, allTrips, allDestinations) => {
   })
 }
 
+export const displayTravelerTotal = (traveler, tripsRepo, destinationsRepo) => {
+  const allTravelerTrips = tripsRepo.filterTravelerTrips(traveler.id);
 
-export const findDestinationByID = (id, destinationsData) => destinationsData.find(destination => destination.id === id)
+  const total = allTravelerTrips.reduce((totalCost, trip) => {
+    const tripTotal = destinationsRepo.calcTripCost(trip.duration, trip.travelers, trip.destinationID)
 
-export const totalCostAllTrips = (traveler, allTrips, allDestinations) => {
-  // use the traveler ID to find all traveler trips
-  // can destinations method
-
-  const travelerTrips = allTrips.filter(trip => trip.userID === traveler.id);
-  const comishPercent = 1.1;
-
-  const total = travelerTrips.reduce((totalCost, trip) => {
-    const destination = findDestinationByID(trip.destinationID, allDestinations);
-    const tripTotal = (destination.estimatedLodgingCostPerDay * trip.duration) + (destination.estimatedFlightCostPerPerson * trip.travelers) * comishPercent;
-
-    return totalCost += tripTotal;
+    totalCost += tripTotal;
+    return totalCost;
   }, 0)
 
   aside.insertAdjacentHTML('beforeend', `<p>Total Spent<br>${total.toLocaleString("en-US", {style: "currency", currency: "USD"})}`)

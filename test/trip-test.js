@@ -1,7 +1,7 @@
 import chai from 'chai';
 const expect = chai.expect;
 
-import Trips from '../src/css/jsClasses/tripsRepo'
+import Trips from '../src/jsClasses/tripsRepo'
 
 describe('See if the tests are running', function() {
   let tripData;
