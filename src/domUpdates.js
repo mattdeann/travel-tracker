@@ -1,3 +1,5 @@
+
+
 // Query Selectors
 export const main = document.querySelector("main");
 export const aside = document.querySelector("aside");
@@ -40,12 +42,27 @@ export const displayTravelerTotal = (traveler, tripsRepo, destinationsRepo) => {
   aside.insertAdjacentHTML('beforeend', `<p>Total Spent<br>${total.toLocaleString("en-US", {style: "currency", currency: "USD"})}`)
 }
 
-export const calculateQuote = (destinationsRepo) => {
+export const displayQuote = (destinationsRepo) => {
+  const date = dateInput.value;
   const duration = durationInput.value;
   const travelers = numTravelersInput.value;
-  const destinationID = destinationInput.value;
+  const destinationID = destinationsRepo.findIDByName(destinationInput.value);
 
-  destinationsRepo.calcTripCost(duration, travelers, destinationID)
+  const tripCost = destinationsRepo.calcTripCost(duration, travelers, destinationID);
+  const tripImage = destinationsRepo.findImage(destinationID);
+  const tripAlt = destinationsRepo.findImageAlt(destinationID);
 
+  tripQuoteDisplay.insertAdjacentHTML('beforeend', `
+  <article class="trip-quote-popup" style="background-image: url${tripImage} alt=${tripAlt}>
+    <section class="estimate-display">
+      Your estimated cost is: ${tripCost.toLocaleString("en-US", {style: "currency", currency: "USD"})}
+    </section>
+  </article>
+  `)
+  tripQuoteDisplay.classList.remove("hidden");
+}
+
+
+function storeQuote() {
 
 }

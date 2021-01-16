@@ -13,15 +13,15 @@ import Traveler from './jsClasses/traveler';
 import { 
   displayTravelerTrips, 
   displayTravelerTotal, 
-  calculateQuote 
+  displayQuote 
 } from './domUpdates';
 
 import { 
   getData 
 } from './apiRequests';
 
-import DestinationsRepo from './jsClasses/destinationsRepo'
-import TripsRepo from './jsClasses/tripsRepo'
+import DestinationsRepo from './jsClasses/destinationsRepo';
+import TripsRepo from './jsClasses/tripsRepo';
 
 
 // Global Variables
@@ -59,11 +59,11 @@ const getDestinationsData = () => {
 populateTravelerMain();
 
 // Function Declarations
-
-const displayQuote = () => {
-  calculateQuote(destinationsRepo);
+const createQuote = () => {
+  displayQuote(destinationsRepo);
 }
 
 
+
 // Event Listeners
-quoteButton.addEventListener('click', displayQuote);
+quoteButton.addEventListener('click', createQuote);

@@ -24,6 +24,10 @@ class DestinationsRepo {
     const destination = this.findDestinationByID(destinationID);
     return destination.alt
   }
+
+  findIDByName(name) {
+    return this.allDestinations.destinations.find(destination => destination.destination.toLowerCase().includes(name)).id;
+  }
 }
 
 
