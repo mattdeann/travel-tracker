@@ -3,10 +3,6 @@ export const main = document.querySelector("main");
 export const aside = document.querySelector("aside");
 export const quoteButton = document.querySelector(".quote-button");
 
-
-// Imports
-import datepicker from 'js-datepicker';
-
 // Functions
 
 // USING TRAVELERTRIPS IN MULTIPLE FUNCTIONS, SHOULD TRAVELER TRIPS BE HERE OR IN TRAVELER??
@@ -32,6 +28,9 @@ export const displayTravelerTrips = (traveler, allTrips, allDestinations) => {
 export const findDestinationByID = (id, destinationsData) => destinationsData.find(destination => destination.id === id)
 
 export const totalCostAllTrips = (traveler, allTrips, allDestinations) => {
+  // use the traveler ID to find all traveler trips
+  // can destinations method
+
   const travelerTrips = allTrips.filter(trip => trip.userID === traveler.id);
   const comishPercent = 1.1;
 
@@ -44,5 +43,3 @@ export const totalCostAllTrips = (traveler, allTrips, allDestinations) => {
 
   aside.insertAdjacentHTML('beforeend', `<p>Total Spent<br>${total.toLocaleString("en-US", {style: "currency", currency: "USD"})}`)
 }
-
-// find all trips, for each trip access the destination and do some maths

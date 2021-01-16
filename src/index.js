@@ -10,7 +10,7 @@ console.log('This is the JavaScript entry file - your code begins here.');
 import { mainDisplay, totalCostAllTrips } from './domUpdates'
 
 // JS IMPORTS
-import Traveler from './users/traveler';
+import Traveler from './css/jsClasses/traveler';
 import { displayTravelerTrips } from './domUpdates';
 import { getData, getTravelersData } from './apiRequests';
 
@@ -70,4 +70,13 @@ const getDestinationsData = () => {
 populateTravelerMain();
 
 
+// ONLY CALLS FROM HERE ON OUT, NO GLOBAL DATA STORAGE
+// SHOULD ALWAYS USE THE RETURN OF ANOTHER FUNCTION
 
+
+// destinationRepo: on event trigger, take in duration, num of travleers, and destination to calculate trip estimate from destinaton repo
+
+// return that calculation here (need function
+// return destination image here (need function)
+
+// domUpdates: also call a domUpdates method that takes in the calculation and takes in the destination image, and diplats the HIDDEN DIV (i need sound effects lol)
