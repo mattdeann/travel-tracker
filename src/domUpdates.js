@@ -17,7 +17,7 @@ export const displayTravelerTrips = (traveler, tripsRepo, destinationsRepo) => {
   main.innerHTML = '';
 
   travelerTrips.forEach(trip => {
-    main.insertAdjacentHTML('beforeend', `
+    main.insertAdjacentHTML('afterbegin', `
       <article class="trip" style="background-image: url(${destinationsRepo.findDestinationByID(trip.destinationID).image}" alt ="${destinationsRepo.findDestinationByID(trip.destinationID).alt}">
         <section class="trip-summary">
           <p class="detail date">${trip.date}</p>
@@ -32,8 +32,9 @@ export const displayTravelerTrips = (traveler, tripsRepo, destinationsRepo) => {
 }
 
 export const displayTravelerTotal = (traveler, tripsRepo, destinationsRepo) => {
-  const allTravelerTrips = tripsRepo.filterTravelerTrips(traveler.id);
+  aside.innerHTML = '<h1>Profile</h1>';
 
+  const allTravelerTrips = tripsRepo.filterTravelerTrips(traveler.id);
   const total = allTravelerTrips.reduce((totalCost, trip) => {
     const tripTotal = destinationsRepo.calcTripCost(trip.duration, trip.travelers, trip.destinationID)
 
@@ -48,10 +49,14 @@ export const displayQuote = destinationsRepo => {
   const duration = durationInput.value;
   const travelers = numTravelersInput.value;
   const destinationID = destinationsRepo.findIDByName(destinationInput.value);
-
+  const destination = destinationsRepo.findDestinationByID(destinationID);
   const tripCost = destinationsRepo.calcTripCost(duration, travelers, destinationID);
 
-  estimateDisplay.innerText = `Your estimated cost is: ${tripCost.toLocaleString("en-US", {style: "currency", currency: "USD"})}`;
+  estimateDisplay.innerHTML = '';
+
+  estimateDisplay.insertAdjacentHTML("afterbegin", `<img class="quote-image" src="${destination.image}" alt="${destination.alt}">`);
+
+  estimateDisplay.insertAdjacentHTML("beforeend", `Your estimated cost is: ${tripCost.toLocaleString("en-US", {style: "currency", currency: "USD"})}`);
 
   modal.style.display = "block";
 }
@@ -60,7 +65,7 @@ export const hideQuote = () => {
   dateInput.value = null;
   durationInput.value = null;
   numTravelersInput.value = null;
-  destinationInput.value - null;
+  destinationInput.value = null;
   modal.style.display = "none";
 }
 

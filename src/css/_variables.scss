@@ -27,6 +27,33 @@ $font: BlenderProBold, sans-serif;
   margin: 3px;
 }
 
+@mixin grow() {
+    transition: all .3s ease-in-out; 
+  
+    &:hover,
+    &focus { 
+    transform: scale(1.1); 
+    }
+}
+
+@mixin shrink() {
+  transition: all .3s ease-in-out; 
+
+  &:hover,
+  &focus { 
+  transform: scale(0.95); 
+  }
+}
+
+@mixin hover() {
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    background-color: $dark-purple;
+    color: $pink;
+  }
+}
+
 .hidden {
   display: none;
 }

@@ -9,8 +9,16 @@
 
   .quote-button {
     margin-top: 20px;
-    background-color: black;
     width: 90%;
     border: 1px solid $pink;
+    background-color: $pink;
+    color: $darker-purple;
+
+    &:hover,
+    &:focus {
+      background-color: $dark-purple;
+      color: $pink;
+      cursor: pointer;
+    }
   }
 }
