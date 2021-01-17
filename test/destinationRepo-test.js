@@ -1,8 +1,8 @@
 import chai from 'chai';
-import DestinationsRepo from '../src/jsClasses/destinationsRepo';
 const expect = chai.expect;
 
-import destinationsRepo from '../src/jsClasses/destinationsRepo'
+import DestinationsRepo from '../src/jsClasses/destinationsRepo';
+
 
 describe('destinationsRepo', function() {
   let destinationsRepo;
