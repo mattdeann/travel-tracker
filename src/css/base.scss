@@ -1,9 +1,11 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
 @import "variables";
-@import "trip";
+@import "nav_styles";
+@import "trip_styles";
 
 body {
-  @include gridDisplay(2fr 8fr 2fr, 1fr 10fr 1fr);
+  @include gridDisplay(2fr 8fr 2fr, 1.5fr 9fr 1.5fr);
+  grid-gap: 10px;
   height: calc(100vh - 20px);
   width: calc(100vw - 20px);
   background: linear-gradient(to bottom right, $black, $darker-purple);
@@ -18,12 +20,20 @@ header {
   grid-column: 1 / -1;
   grid-row: 1 / 2;
   @include headerFooterStyles;
+  box-shadow: 0px 0px 5px 2px whitesmoke;
+  padding: 10px;
 }
 
 nav {
   grid-column: 1 / 2;
   grid-row: 2 / 3;
   @include sideStyles;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  @include navStyles;
 }
 
 main {
@@ -33,9 +43,10 @@ main {
   border: $grid-border;
   margin: 3px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1.5fr));
   grid-gap: 15px;
   padding: 10px;
+  overflow-y: scroll;
 
   @include tripStyles;
   
@@ -51,5 +62,41 @@ footer {
   grid-column: 1 / -1;
   grid-row: 3 / 4;
   @include headerFooterStyles;
+}
+
+.modal {
+  display: none;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      
+      &close:hover,
+      &close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+  }
 }
 

@@ -1,0 +1,13 @@
+@mixin navStyles() {
+  .trip-request {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .quote-button {
+    width: 90%;
+    border: 1px solid $pink;
+  }
+}

@@ -11,10 +11,21 @@
     <h1>Time Travelers</h1>
   </header>
   <nav>
-
+    <section class="trip-request">
+      <p>Plan a trip!</p>
+      <label for="form-date">Departure Date</label>
+      <input type="date" class="form-date" id="form-date">
+      <label for="form-duration">Number of Days</label>
+      <input type="number" class="form-duration" id="form-duration">
+      <label for="form-travelers">Number of Travelers</label>
+      <input type="number" class="form-travelers" id="form-travelers">
+      <label for="form-destination">Destination</label>
+      <input class="form-destination" id="form-destination">
+      <article class="quote-button">Get a Quote!</article>
+    </section>
   </nav>
   <main>
-    <!-- <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px"> -->
+
   </main>
   <aside>
 
@@ -22,6 +33,16 @@
   <footer>
 
   </footer>
+
+  <article class="modal">
+    <article class="modal-content">
+      <span class="close">Close</span>
+      <section class="estimate-display">
+        
+      </section>
+    </article>
+    <button class="request-button">Book This Vacation</button>
+  </article>
   <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
 </body>
 </html>
