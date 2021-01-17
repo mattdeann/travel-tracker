@@ -1,10 +1,10 @@
 class TripsRepo {
-  constructor(trips) {
-    this.allTrips = trips
+  constructor(tripsData) {
+    this.allTrips = tripsData.trips;
   }
 
   filterTravelerTrips(travelerID) {
-    return this.allTrips.trips.filter(trip => trip.userID === travelerID);
+    return this.allTrips.filter(trip => trip.userID === travelerID);
   }
 } 
 
