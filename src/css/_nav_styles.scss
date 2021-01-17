@@ -4,9 +4,12 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    margin: 10px;
   }
 
   .quote-button {
+    margin-top: 20px;
+    background-color: black;
     width: 90%;
     border: 1px solid $pink;
   }
