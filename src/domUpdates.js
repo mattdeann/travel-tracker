@@ -56,7 +56,7 @@ export const displayQuote = destinationsRepo => {
 
   estimateDisplay.insertAdjacentHTML("afterbegin", `<img class="quote-image" src="${destination.image}" alt="${destination.alt}">`);
 
-  estimateDisplay.insertAdjacentHTML("beforeend", `Your estimated cost is: ${tripCost.toLocaleString("en-US", {style: "currency", currency: "USD"})}`);
+  estimateDisplay.insertAdjacentHTML("beforeend", `<p>Your estimated cost is: ${tripCost.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>`);
 
   modal.style.display = "block";
 }

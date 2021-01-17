@@ -13,6 +13,7 @@
     border: 1px solid $pink;
     background-color: $pink;
     color: $darker-purple;
+    transition: all .3s ease-in-out;
 
     &:hover,
     &:focus {
