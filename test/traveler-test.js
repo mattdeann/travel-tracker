@@ -7,7 +7,6 @@ describe('See if the tests are running', function() {
   let travelerData;
   let traveler;
   
-
   beforeEach(function() {
     travelerData = {
       "id": 1,
@@ -18,7 +17,6 @@ describe('See if the tests are running', function() {
     traveler = new Traveler(travelerData);
   })
 
-
   it('should store traveler data', function() {
     expect(traveler).to.be.an.instanceOf(Traveler);
     expect(traveler).to.deep.equal({
@@ -27,7 +25,5 @@ describe('See if the tests are running', function() {
       "travelerType": "relaxer",
     });
   })
-
-  
 
 });
