@@ -9,10 +9,11 @@ $font: BlenderProBold, sans-serif;
   grid-template-rows: $rows;
 };
 
-@mixin flexDisplay($direction, $justify) {
+@mixin flexDisplay($direction, $justify, $align) {
   display: flex;
   flex-direction: $direction;
   justify-content: $justify;
+  align-items: $align;
 };
 
 @mixin headerFooterStyles() {
