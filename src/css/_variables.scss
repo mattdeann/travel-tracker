@@ -54,6 +54,28 @@ $font: BlenderProBold, sans-serif;
   }
 }
 
+@mixin scrollbar() {
+  /* width */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: white;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $yellow;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $light-blue;
+}
+}
+
 .hidden {
   display: none;
 }
@@ -76,5 +98,7 @@ $pink: #D61289;
 $blue: #2B7FB5;
 
 $light-blue: #18F5FE;
+
+$yellow: #F9F300;
 
 $grid-border: 5px solid $pink;

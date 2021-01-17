@@ -21,7 +21,7 @@ header {
   grid-column: 1 / -1;
   grid-row: 1 / 2;
   @include headerFooterStyles;
-  box-shadow: 0px 0px 5px 2px whitesmoke;
+  box-shadow: 0px 0px 5px 2px $yellow;
   padding: 10px;
 }
 
@@ -40,18 +40,23 @@ nav {
 main {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
-  background: linear-gradient(to bottom, $purple, $pink);
+  background: linear-gradient(to bottom, $dark-purple, $darker-purple);
   border: $grid-border;
   margin: 3px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 15px;
   padding: 10px;
-  overflow-y: scroll;
+  overflow-y: auto;
+
+  
 
   @include tripStyles;
   
 }
+
+@include scrollbar;
+
 
 aside {
   grid-column: 3 / 4;
