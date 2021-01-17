@@ -78,6 +78,4 @@ describe('destinationsRepo', function() {
     expect(destinationsRepo.findIDByName('lima')).to.equal(1);
   })
 
-
-
 });

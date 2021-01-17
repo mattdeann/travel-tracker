@@ -6,7 +6,6 @@ import TripsRepo from '../src/jsClasses/tripsRepo'
 describe('TripsRepo', function() {
   let tripsRepo;
   
-
   beforeEach(function() {
     const tripData = {"trips": [
       {
@@ -33,7 +32,6 @@ describe('TripsRepo', function() {
 
     tripsRepo = new TripsRepo(tripData);
   })
-
 
   it('should be and instance of a TripsRepo', function() {
     expect(tripsRepo).to.be.an.instanceOf(TripsRepo);
@@ -76,6 +74,5 @@ describe('TripsRepo', function() {
       "suggestedActivities": []
     }]);
   })
-
 
 });
