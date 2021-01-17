@@ -16,7 +16,13 @@ class DestinationsRepo {
   }
 
   findIDByName(name) {
-    return this.allDestinations.find(destination => destination.destination.toLowerCase().includes(name.toLowerCase())).id;
+    const desiredDestination = this.allDestinations.find(destination => destination.destination.toLowerCase().includes(name.toLowerCase()));
+    
+    if (desiredDestination === undefined) {
+      return undefined;
+    } else {
+      return desiredDestination.id;
+    }
   }
 }
 

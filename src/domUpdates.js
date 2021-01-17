@@ -69,25 +69,16 @@ export const hideQuote = () => {
   modal.style.display = "none";
 }
 
+export const checkInputs = (destinationsRepo) => {
+  const date = dateInput.value;
+  const duration = durationInput.value;
+  const travelers = numTravelersInput.value;
+  const destinationID = destinationsRepo.findIDByName(destinationInput.value);
 
-// export const displayPendingTrip = destinationsRepo => {
-//   const date = dateInput.value;
-//   const duration = durationInput.value;
-//   const travelers = numTravelersInput.value;
-//   const destinationID = destinationsRepo.findIDByName(destinationInput.value);
-//   const tripImage = destinationsRepo.findImage(destinationID);
-//   const tripAlt = destinationsRepo.findImageAlt(destinationID);
-  
-//   main.insertAdjacentHTML('beforeend', `
-//       <article class="trip" style="background-image: url(${tripImage})" alt="${tripAlt}">
-//         <section class="trip-summary">
-//           <p class="detail date">${date}</p>
-//           <p class="detail duration">${duration} day trip to</p>
-//           <p class-"detail destination">${destinationsRepo.findDestinationByID(destinationID).destination}</p>
-//           <p class="detail travelers">Travelers: ${travelers}</p>
-//           <p class="detail status">Status: Pending</p>
-//         </section>
-//       </article>
-//     `);
-// }
+  if (date === '' || 1 > duration || 1 > travelers || destinationID === undefined) {
+    return false;
+  } else {
+    return true;
+  }
+}
 

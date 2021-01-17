@@ -21,6 +21,7 @@ import {
   displayTravelerTotal, 
   displayQuote, 
   hideQuote,
+  checkInputs,
 } from './domUpdates';
 
 import { 
@@ -68,7 +69,11 @@ populateTravelerMain();
 
 // Function Declarations
 const createQuote = () => {
-  displayQuote(destinationsRepo);
+  if (!checkInputs(destinationsRepo)) {
+    alert('Invalid input, check your form.')
+  } else {
+    displayQuote(destinationsRepo);
+  }
 }
 
 const closeModal = () => {

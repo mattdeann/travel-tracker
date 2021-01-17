@@ -1,4 +1,8 @@
 @mixin navStyles() {
+
+  input {
+    width: 8.5rem;
+  }
   .trip-request {
     display: flex;
     flex-direction: column;
