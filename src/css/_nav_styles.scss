@@ -14,9 +14,10 @@
   .quote-button {
     margin-top: 20px;
     width: 90%;
-    border: 1px solid $pink;
-    background-color: $pink;
-    color: $darker-purple;
+    border-radius: 5px;
+    background-color: $yellow;
+    color: $dark-purple;
+    font-weight: bolder;
     transition: all .3s ease-in-out;
 
     &:hover,

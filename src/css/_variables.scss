@@ -26,6 +26,7 @@ $font: BlenderProBold, sans-serif;
   background: linear-gradient(to bottom, $purple, $pink, $light-blue, $blue);
   border: $grid-border;
   margin: 3px;
+  color: $darker-purple;
 }
 
 @mixin grow() {
