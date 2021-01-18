@@ -1,5 +1,4 @@
 // DOCUMENT
-
 $font: BlenderProBold, sans-serif;
 
 // MIXINS
@@ -116,10 +115,6 @@ $font: BlenderProBold, sans-serif;
   display: none;
 }
 
-// .pop-up {
-//   z-index: 1;
-// }
-
 // COLORS
 $black: #09071a;
 
@@ -138,3 +133,12 @@ $light-blue: #18F5FE;
 $yellow: #F9F300;
 
 $grid-border: 5px solid $pink;
+
+// Media Query Sizes
+
+@mixin mobileSize() {
+  @media only screen 
+  and (min-width: 320px) 
+  and (max-width: 812px) {
+  }
+}

@@ -1,0 +1,11 @@
+@import 'variables';
+
+@mixin mobile() {
+  @media (min-width:481px) {
+    @content;
+  }
+}
+
+$mediaMaxWidth: 1260px;
+$mediaBp1Width: 960px;
+$mediaMinWidth: 480px;
