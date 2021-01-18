@@ -47,8 +47,8 @@ class TripsRepo {
     }, 0)
   }
 
-  filterTripsToday() {
-
+  filterTripsToday(date) {
+    return this.allTrips.filter(trip => trip.date === date);
   }
 } 
 

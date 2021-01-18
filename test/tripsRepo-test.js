@@ -113,4 +113,17 @@ describe('TripsRepo', function() {
     expect(tripsRepo.totalAnnualCommission(2020, destinationsRepo)).to.equal(627);
   })
 
+  it('should return the all of the entered dates trips', function() {
+    expect(tripsRepo.filterTripsToday("2020/10/04")).to.deep.equal([{
+      "id": 2,
+      "userID": 2,
+      "destinationID": 2,
+      "travelers": 5,
+      "date": "2020/10/04",
+      "duration": 18,
+      "status": "pending",
+      "suggestedActivities": []
+    }]);
+  })
+
 });
