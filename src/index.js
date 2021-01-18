@@ -109,18 +109,16 @@ const closeModal = () => {
   hideRequest();
 }
 
-const submitTripRequest = event => {
-  event.preventDefault()
+const submitTripRequest = () => {
   const date = dateInput.value.toString();
   const formattedDate = date.replaceAll("-", "/");
   const duration = durationInput.value;
   const travelers = numTravelersInput.value;
   const destinationID = destinationsRepo.findIDByName(destinationInput.value);
-  console.log(date)
 
   Promise.resolve(postTrip(tripsRepo.allTrips.length + 1, traveler.id, destinationID, travelers, formattedDate, duration))
-    .then(hideQuote())
     .then(populateTravelerMain())
+    .then(hideQuote())
 
   console.log('done')
 }
