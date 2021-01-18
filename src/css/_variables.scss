@@ -45,6 +45,23 @@ $font: BlenderProBold, sans-serif;
   }
 }
 
+@mixin closeButtonStyles() {
+  align-self: flex-end;
+  padding-top: 0;
+  padding-right: 5px;
+  padding-bottom: 15px;
+  color: $purple;
+  font-size: 15px;
+  font-weight: bold;
+  @include grow;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    color: $pink;
+  }
+}
+
 
 @mixin grow() {
     transition: all .3s ease-in-out; 

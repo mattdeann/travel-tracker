@@ -4,7 +4,6 @@ export const getData = endpoint => {
     .catch(error => console.log('getData fetch error', error));
 }
 
-
 export const postTrip = (newID, userID, destinationID, travelers, date, duration) => {
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -19,7 +18,6 @@ export const postTrip = (newID, userID, destinationID, travelers, date, duration
     "status": "pending",
     "suggestedActivities": []
   });
-  console.log(raw);
 
   var requestOptions = {
     method: 'POST',
@@ -29,7 +27,29 @@ export const postTrip = (newID, userID, destinationID, travelers, date, duration
   };
 
   return fetch("http://localhost:3001/api/v1/trips", requestOptions)
-    .then(response => response.text())
+    .then(response => response.json())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+}
+
+export const approveTrip = (tripID) => {
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  var raw = JSON.stringify({
+    "id": parseInt(`${tripID}`),
+    "status": "approved"
+  });
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+
+  return fetch("http://localhost:3001/api/v1/updateTrip", requestOptions)
+    .then(response => response.json())
     .then(result => console.log(result))
     .catch(error => console.log('error', error));
 }

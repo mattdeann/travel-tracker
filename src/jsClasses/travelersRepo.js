@@ -7,6 +7,9 @@ class TravelersRepo {
     return this.allTravelers.find(traveler => traveler.id === username);
   }
 
+  findTravelerNameByID(userID) {
+    return this.allTravelers.find(traveler => traveler.id === userID);
+  }
 }
 
 export default TravelersRepo;

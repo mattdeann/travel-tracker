@@ -1,0 +1,57 @@
+@import "variables";
+@import "trip_styles";
+@import "modal_styles";
+
+@mixin adminDisplay() {
+  grid-row: 1 / -1;
+  grid-column: 1 / -1;
+  padding: 10px;
+  overflow-y: auto;
+  @include gridDisplay(2fr 8fr, 2fr 10fr);
+
+  .admin-header {
+    grid-row: 1 / 2;
+    grid-column: 1 / -1;
+  }
+
+  .admin-nav {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    border: 2px solid $pink;
+    @include sideStyles;
+    @include flexDisplay(column, center, center);
+    @include navStyles;
+  }
+
+  .admin-modal {
+    @include modalStyles;
+
+    .close-request {
+      @include closeButtonStyles;
+    }
+
+    .pending-trip {
+      @include tripStyles;
+      padding-top: 0;
+      padding: 1rem;
+      height: 20rem;
+      width: 30rem;
+      background-size: cover;
+    }
+
+    .trip-summary {
+      @include flexDisplay(column, center, center);
+    }
+  }
+
+  main {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    margin-left: 0.5rem;
+    grid-gap: 15px;
+    overflow-y: auto;
+    @include tripStyles;
+  }
+}

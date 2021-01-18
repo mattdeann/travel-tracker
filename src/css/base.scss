@@ -3,6 +3,7 @@
 @import "nav_styles";
 @import "trip_styles";
 @import "modal_styles";
+@import "admin_display";
 
 body {
   @include gridDisplay(2fr 8fr 2fr, 2fr 9fr 1fr);
@@ -31,7 +32,7 @@ body {
   }
 }
 
-header {
+.traveler-header {
   grid-column: 1 / -1;
   grid-row: 1 / 2;
   @include headerFooterStyles;
@@ -39,7 +40,7 @@ header {
   padding: 10px;
 }
 
-nav {
+.traveler-nav {
   grid-column: 1 / 2;
   grid-row: 2 / 3;
   @include sideStyles;
@@ -47,7 +48,7 @@ nav {
   @include navStyles;
 }
 
-main {
+.traveler-main {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
   background: linear-gradient(to bottom, $dark-purple, $darker-purple);
@@ -65,7 +66,7 @@ main {
 @include scrollbar;
 
 
-aside {
+.traveler-aside {
   grid-column: 3 / 4;
   grid-row: 2 / 3;
   @include flexDisplay(column, flex-start, center);
@@ -82,13 +83,17 @@ aside {
 
 }
 
-footer {
+.traveler-footer {
   grid-column: 1 / -1;
   grid-row: 3 / 4;
   @include headerFooterStyles;
 }
 
-.modal {
+.traveler-modal {
   @include modalStyles;
+}
+
+.admin-display {
+  @include adminDisplay;
 }
 

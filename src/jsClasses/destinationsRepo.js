@@ -9,7 +9,6 @@ class DestinationsRepo {
 
   calcTripCost(duration, travelers, destinationID) {
     const destination = this.findDestinationByID(destinationID);
-
     const totalWithCommission = ((destination.estimatedLodgingCostPerDay * duration) + (destination.estimatedFlightCostPerPerson * travelers)) * 1.1;
 
     return parseInt(totalWithCommission.toFixed(2));
