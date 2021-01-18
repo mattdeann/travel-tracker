@@ -14,6 +14,7 @@ const durationInput = document.querySelector(".form-duration");
 const numTravelersInput = document.querySelector(".form-travelers");
 const destinationInput = document.querySelector(".form-destination");
 const usernameInput = document.querySelector(".form-username");
+const passwordInput = document.querySelector(".form-password");
 const loginButton = document.querySelector(".login-button");
 
 // JS IMPORTS
@@ -40,9 +41,10 @@ let travelersRepo;
 let tripsRepo;
 let destinationsRepo;
 let traveler;
+let travelerID;
 
 // Initial Data and DOM Population
-const populateTravelerMain = travelerID => {
+const populateTravelerMain = () => {
   Promise.all([getTravelerData(travelerID),
     getTripsData(),
     getDestinationsData()
@@ -74,8 +76,6 @@ const getTripsData = () => {
 const getDestinationsData = () => {
   return getData('destinations')
 }
-// FUNCTION CALLED HERE TO DEAL WITH CALL STACK
-// populateTravelerMain();
 
 // Function Declarations
 const createQuote = () => {
@@ -104,8 +104,9 @@ const submitTripRequest = () => {
 
 const login = () => {
   const username = usernameInput.value;
-  const travelerID = checkLoginInputs(username, travelersRepo).id;
-  populateTravelerMain(travelerID);
+  const password = passwordInput.value;
+  travelerID = checkLoginInputs(username, password, travelersRepo).id;
+  populateTravelerMain();
   displayDesiredElements('traveler');
 }
 

@@ -87,17 +87,13 @@ export const checkRequestInputs = (destinationsRepo) => {
   }
 }
 
-export const checkLoginInputs = (username, travelersRepo) => {
+export const checkLoginInputs = (username, password, travelersRepo) => {
   const twoChar = parseInt(username.slice(-2));
   const oneChar = parseInt(username.slice(-1));
 
-  // get value of username login
-  // if last 2 indices of string are numbers, return numbers as travelerID
-  // if not, see if just the last index is a number, return that number
-  // if still here, return an alert for the user
-  if (travelersRepo.checkForID(twoChar)) {
+  if (travelersRepo.checkForID(twoChar) && password === 'travel2021') {
     return travelersRepo.checkForID(twoChar);
-  } else if (travelersRepo.checkForID(oneChar)) {
+  } else if (travelersRepo.checkForID(oneChar) && password === 'travel2021') {
     return travelersRepo.checkForID(oneChar);
   } else {
     alert("No account found with that information. Try again.");
