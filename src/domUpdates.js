@@ -31,13 +31,14 @@ export const displayTravelerTrips = (traveler, tripsRepo, destinationsRepo) => {
   })
 }
 
-export const displayAnnualTotal = (traveler, tripsRepo, destinationsRepo) => {
+export const displayTravelerAside = (traveler, tripsRepo, destinationsRepo) => {
   aside.innerHTML = '<h1>Profile</h1>';
   const thisYear = new Date().toJSON().slice(0,4).replace(/-/g, '/');
+  const annualTotal = tripsRepo.totalAnnualTripsCost(traveler.id, thisYear, destinationsRepo)
+  const pendingTotal = tripsRepo.totalPendingTripsCost(traveler.id, destinationsRepo)
 
-  const total = tripsRepo.totalAnnualTripsCost(traveler.id, thisYear, destinationsRepo)
-
-  aside.insertAdjacentHTML('beforeend', `<p>Total Spent in ${thisYear}<br>${total.toLocaleString("en-US", {style: "currency", currency: "USD"})}`)
+  aside.insertAdjacentHTML('beforeend', `<p>Total Spent in ${thisYear}<br>${annualTotal.toLocaleString("en-US", {style: "currency", currency: "USD"})}<br>
+  <p>Total of Pending Trips<br>${pendingTotal.toLocaleString("en-US", {style: "currency", currency: "USD"})}`);
 }
 
 export const displayQuote = destinationsRepo => {

@@ -6,6 +6,7 @@ import TripsRepo from '../src/jsClasses/tripsRepo';
 
 describe('TripsRepo', function() {
   let tripsRepo;
+  let destinationsRepo;
   
   beforeEach(function() {
     const tripData = {"trips": [
@@ -30,8 +31,19 @@ describe('TripsRepo', function() {
         "suggestedActivities": []
       }
     ]}
+    const destinationsData = {"destinations": [
+      {
+        "id": 2,
+        "destination": "Stockholm, Sweden",
+        "estimatedLodgingCostPerDay": 100,
+        "estimatedFlightCostPerPerson": 780,
+        "image": "https://images.unsplash.com/photo-1560089168-6516081f5bf1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+        "alt": "city with boats on the water during the day time"
+      } 
+    ]};
 
     tripsRepo = new TripsRepo(tripData);
+    destinationsRepo = new DestinationsRepo(destinationsData);
   })
 
   it('should be and instance of a TripsRepo', function() {
@@ -77,19 +89,11 @@ describe('TripsRepo', function() {
   })
 
   it('should return all a travelers annual trips', function() {
-    const destinationsData = {"destinations": [
-      {
-        "id": 2,
-        "destination": "Stockholm, Sweden",
-        "estimatedLodgingCostPerDay": 100,
-        "estimatedFlightCostPerPerson": 780,
-        "image": "https://images.unsplash.com/photo-1560089168-6516081f5bf1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
-        "alt": "city with boats on the water during the day time"
-      } 
-    ]};
-    const destinationsRepo = new DestinationsRepo(destinationsData);
-
     expect(tripsRepo.totalAnnualTripsCost(2, 2020, destinationsRepo)).to.equal(6270);
+  })
+
+  it('should return the total for pending trips', function() {
+    expect(tripsRepo.totalPendingTripsCost(2, destinationsRepo)).to.equal(6270);
   })
 
 });
