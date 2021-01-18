@@ -18,7 +18,7 @@ export const displayTravelerTrips = (traveler, tripsRepo, destinationsRepo) => {
 
   travelerTrips.forEach(trip => {
     main.insertAdjacentHTML('afterbegin', `
-      <article class="trip" style="background-image: url(${destinationsRepo.findDestinationByID(trip.destinationID).image}" alt ="${destinationsRepo.findDestinationByID(trip.destinationID).alt}">
+      <article tabindex="0" class="trip" style="background-image: url(${destinationsRepo.findDestinationByID(trip.destinationID).image}" alt ="${destinationsRepo.findDestinationByID(trip.destinationID).alt}">
         <section class="trip-summary">
           <p class="detail date">${trip.date}</p>
           <p class="detail duration">${trip.duration} day trip to</p>
@@ -37,8 +37,8 @@ export const displayTravelerAside = (traveler, tripsRepo, destinationsRepo) => {
   const annualTotal = tripsRepo.totalAnnualTripsCost(traveler.id, thisYear, destinationsRepo)
   const pendingTotal = tripsRepo.totalPendingTripsCost(traveler.id, destinationsRepo)
 
-  aside.insertAdjacentHTML('beforeend', `<p>Total Spent in ${thisYear}<br>${annualTotal.toLocaleString("en-US", {style: "currency", currency: "USD"})}<br>
-  <p>Total of Pending Trips<br>${pendingTotal.toLocaleString("en-US", {style: "currency", currency: "USD"})}`);
+  aside.insertAdjacentHTML('beforeend', `<p class="aside=element title">Total Spent in ${thisYear}</p><p class="aside=element value">${annualTotal.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>
+  <p class="aside=element title">Total of Pending Trips</p><p class="aside=element value">${pendingTotal.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>`);
 }
 
 export const displayQuote = destinationsRepo => {
