@@ -38,7 +38,7 @@ class TripsRepo {
   }
 
   totalAnnualCommission(year, destinationsRepo) {
-    const annualAdminTrips = this.allTrips.filter(trip => trip.date.includes(year));
+    const annualAdminTrips = this.allTrips.filter(trip => trip.date.includes(year) && trip.status === "approved");
 
     return annualAdminTrips.reduce((totalCost, trip) => {
       const tripCost = destinationsRepo.calcTripCost(trip.duration, trip.travelers, trip.destinationID);

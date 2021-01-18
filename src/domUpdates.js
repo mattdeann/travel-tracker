@@ -9,6 +9,7 @@ export const travelerFooter = document.querySelector(".traveler-footer");
 export const adminDisplay = document.querySelector(".admin-display");
 export const adminHeader = document.querySelector(".admin-header");
 export const adminModal = document.querySelector(".admin-modal");
+export const modalContent = document.querySelector(".modal-content");
 export const adminNav = document.querySelector(".admin-nav");
 export const adminMain = document.querySelector(".admin-main");
 export const dateInput = document.querySelector(".form-date");
@@ -102,7 +103,6 @@ export const displayAdminNav = (travelersRepo, tripsRepo, destinationsRepo) => {
   //KEEPING HARD CODED DATE SO NEXT TWO VARIABLES !== NOTHING;
   const annualCommissionTotal = tripsRepo.totalAnnualCommission(2020, destinationsRepo);
   
-
   adminNav.insertAdjacentHTML('beforeend', `<p class="admin-nav-element title">EARNINGS IN ${thisYear}</p><p class="admin-nav-element value">${annualCommissionTotal.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>
   <p class="admin-nav-element title">WHO'S TRAVELING TODAY?</p>`);
   constructTodaysTravelers(travelersRepo, tripsRepo);
@@ -125,6 +125,7 @@ export const displayAdminModal = (event, destinationsRepo, tripsRepo) => {
 
   adminContentDisplay.innerHTML = '';
   adminContentDisplay.insertAdjacentHTML("afterbegin", selectedTripHTML);
+  modalContent.id = `${tripID}`
   adminModal.style.display = "block";
 }
 

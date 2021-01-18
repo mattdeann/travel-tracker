@@ -10,6 +10,7 @@ const quoteButton = document.querySelector('.quote-button');
 const closeQuoteButton = document.querySelector('.close-quote');
 const closeApprovalButton = document.querySelector('.close-approval');
 const requestButton = document.querySelector('.request-button');
+const approveButton = document.querySelector('.approve-button');
 const dateInput = document.querySelector(".form-date");
 const durationInput = document.querySelector(".form-duration");
 const numTravelersInput = document.querySelector(".form-travelers");
@@ -17,6 +18,7 @@ const destinationInput = document.querySelector(".form-destination");
 const usernameInput = document.querySelector(".form-username");
 const passwordInput = document.querySelector(".form-password");
 const loginButton = document.querySelector(".login-button");
+const modalContent = document.querySelector(".modal-content");
 
 // JS IMPORTS
 import Traveler from './jsClasses/traveler';
@@ -40,7 +42,8 @@ import {
 } from './domUpdates';
 import { 
   getData,
-  postTrip
+  postTrip,
+  approveTrip
 } from './apiRequests';
 
 // Global Variables
@@ -121,17 +124,18 @@ const submitTripRequest = () => {
   Promise.resolve(postTrip(tripsRepo.allTrips.length + 1, traveler.id, destinationID, travelers, formattedDate, duration))
     .then(populateTravelerMain())
     .then(hideQuote())
-
-  console.log('done')
 }
 
 const displayRequest = event => {
   displayAdminModal(event, destinationsRepo, tripsRepo);
 }
 
-const approveRequest = event => {
-  // construct a post?
+const approveRequest = () => {
+  const tripID = modalContent.id;
 
+  Promise.resolve(approveTrip(tripID))
+    .then(populateAdminMain())
+    .then(hideRequest())
 }
 
 const login = () => {
