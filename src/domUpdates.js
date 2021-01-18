@@ -11,7 +11,6 @@ export const durationInput = document.querySelector(".form-duration");
 export const numTravelersInput = document.querySelector(".form-travelers");
 export const destinationInput = document.querySelector(".form-destination");
 export const estimateDisplay = document.querySelector(".estimate-display");
-export const usernameInput = document.querySelector(".form-userName");
 export const loginButton = document.querySelector(".login-button");
 
 
@@ -88,20 +87,21 @@ export const checkRequestInputs = (destinationsRepo) => {
   }
 }
 
-export const checkLoginInputs = () => {
-  const twoChar
+export const checkLoginInputs = (username, travelersRepo) => {
+  const twoChar = parseInt(username.slice(-2));
+  const oneChar = parseInt(username.slice(-1));
+
   // get value of username login
   // if last 2 indices of string are numbers, return numbers as travelerID
   // if not, see if just the last index is a number, return that number
   // if still here, return an alert for the user
-  if (typeof parseInt(usernameInput.value.slice(-2)) {
-    return 
+  if (travelersRepo.checkForID(twoChar)) {
+    return travelersRepo.checkForID(twoChar);
+  } else if (travelersRepo.checkForID(oneChar)) {
+    return travelersRepo.checkForID(oneChar);
+  } else {
+    alert("No account found with that information. Try again.");
   }
-
-}
-
-export const login = id => {
-
 }
 
 export const displayDesiredElements = display => {

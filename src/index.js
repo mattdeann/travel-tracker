@@ -13,9 +13,14 @@ const dateInput = document.querySelector(".form-date");
 const durationInput = document.querySelector(".form-duration");
 const numTravelersInput = document.querySelector(".form-travelers");
 const destinationInput = document.querySelector(".form-destination");
+const usernameInput = document.querySelector(".form-username");
+const loginButton = document.querySelector(".login-button");
 
 // JS IMPORTS
 import Traveler from './jsClasses/traveler';
+import TravelersRepo from './jsClasses/travelersRepo'
+import DestinationsRepo from './jsClasses/destinationsRepo';
+import TripsRepo from './jsClasses/tripsRepo';
 import { 
   displayTravelerTrips, 
   displayTravelerAside, 
@@ -25,28 +30,20 @@ import {
   checkLoginInputs,
   displayDesiredElements,
 } from './domUpdates';
-
 import { 
   getData,
   postTrip
 } from './apiRequests';
 
-import DestinationsRepo from './jsClasses/destinationsRepo';
-import TripsRepo from './jsClasses/tripsRepo';
-
-
 // Global Variables
+let travelersRepo;
 let tripsRepo;
 let destinationsRepo;
 let traveler;
 
 // Initial Data and DOM Population
-const initializePage = () => {
-  displayDesiredElements('login');
-}
-
-const populateTravelerMain = () => {
-  Promise.all([getTravelerData(),
+const populateTravelerMain = travelerID => {
+  Promise.all([getTravelerData(travelerID),
     getTripsData(),
     getDestinationsData()
   ])
@@ -59,8 +56,15 @@ const populateTravelerMain = () => {
     });
 }
 
-const getTravelerData = () => {
-  return getData('travelers/2')
+const getTravelerData = travelerID => {
+  return getData(`travelers/${travelerID}`)
+}
+
+const getTravelersData = () => {
+  getData('travelers')
+    .then(response => {
+      travelersRepo = new TravelersRepo(response);
+    })
 }
 
 const getTripsData = () => {
@@ -98,9 +102,23 @@ const submitTripRequest = () => {
     .then(populateTravelerMain())
 }
 
+const login = () => {
+  const username = usernameInput.value;
+  const travelerID = checkLoginInputs(username, travelersRepo).id;
+  populateTravelerMain(travelerID);
+  displayDesiredElements('traveler');
+}
+
+const initializePage = () => {
+  Promise.resolve(getTravelersData())
+    .then(
+      displayDesiredElements('login')
+    )
+}
 
 // Event Listeners
-document.addEventListener("load", initializePage())
-quoteButton.addEventListener('click', createQuote);
-closeQuoteButton.addEventListener('click', closeModal);
-requestButton.addEventListener('click', submitTripRequest);
+document.addEventListener("load", initializePage());
+quoteButton.addEventListener("click", createQuote);
+closeQuoteButton.addEventListener("click", closeModal);
+requestButton.addEventListener("click", submitTripRequest);
+loginButton.addEventListener("click", login)
