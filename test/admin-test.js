@@ -22,7 +22,7 @@ describe('admin', function() {
   })
 
   it('should be able to check if a username and password match its credentials', function() {
-    expect(admin.checkCredentials("agency", "password2021")).to.equal(true);
+    expect(admin.checkCredentials("agency", "travel2021")).to.equal(true);
     expect(admin.checkCredentials("agency", "password2019")).to.equal(false);
   })
 

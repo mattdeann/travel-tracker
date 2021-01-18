@@ -95,6 +95,7 @@ describe('TripsRepo', function() {
   it('should return the total for pending trips', function() {
     expect(tripsRepo.totalPendingTripsCost(2, destinationsRepo)).to.equal(6270);
   })
+
   it('should return all pending trips', function() {
     expect(tripsRepo.filterPendingTrips()).to.deep.equal([{
       "id": 2,
@@ -106,6 +107,10 @@ describe('TripsRepo', function() {
       "status": "pending",
       "suggestedActivities": []
     }]);
+  })
+
+  it('should return the total in commission for annual trips', function() {
+    expect(tripsRepo.totalAnnualCommission(2020, destinationsRepo)).to.equal(627);
   })
 
 });

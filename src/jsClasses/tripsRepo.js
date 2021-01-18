@@ -36,6 +36,20 @@ class TripsRepo {
       return totalCost;
     }, 0) 
   }
+
+  totalAnnualCommission(year, destinationsRepo) {
+    const annualAdminTrips = this.allTrips.filter(trip => trip.date.includes(year));
+
+    return annualAdminTrips.reduce((totalCost, trip) => {
+      const tripCost = destinationsRepo.calcTripCost(trip.duration, trip.travelers, trip.destinationID);
+      totalCost += tripCost;
+      return totalCost * 0.1;
+    }, 0)
+  }
+
+  filterTripsToday() {
+
+  }
 } 
 
 export default TripsRepo;

@@ -127,6 +127,10 @@ const displayRequest = event => {
   displayAdminModal(event, destinationsRepo, tripsRepo);
 }
 
+const approveRequest = event => {
+  // construct a post?
+
+}
 
 const login = () => {
   const username = usernameInput.value;
@@ -156,4 +160,5 @@ closeQuoteButton.addEventListener("click", closeModal);
 closeApprovalButton.addEventListener("click", closeModal);
 requestButton.addEventListener("click", submitTripRequest);
 loginButton.addEventListener("click", login);
-adminMain.addEventListener("click", displayRequest)
+adminMain.addEventListener("click", displayRequest);
+approveButton.addEventListener("click", approveRequest);
