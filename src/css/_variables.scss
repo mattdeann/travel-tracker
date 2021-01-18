@@ -28,6 +28,24 @@ $font: BlenderProBold, sans-serif;
   margin: 3px;
 }
 
+@mixin buttonStyles() {
+  margin-top: 20px;
+  width: 8rem;
+  border-radius: 5px;
+  background-color: $yellow;
+  color: $dark-purple;
+  font-weight: bolder;
+  transition: all .3s ease-in-out;
+
+  &:hover,
+  &:focus {
+    background-color: $dark-purple;
+    color: $pink;
+    cursor: pointer;
+  }
+}
+
+
 @mixin grow() {
     transition: all .3s ease-in-out; 
   

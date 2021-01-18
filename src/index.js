@@ -13,34 +13,39 @@ const dateInput = document.querySelector(".form-date");
 const durationInput = document.querySelector(".form-duration");
 const numTravelersInput = document.querySelector(".form-travelers");
 const destinationInput = document.querySelector(".form-destination");
+const usernameInput = document.querySelector(".form-username");
+const passwordInput = document.querySelector(".form-password");
+const loginButton = document.querySelector(".login-button");
 
 // JS IMPORTS
 import Traveler from './jsClasses/traveler';
+import TravelersRepo from './jsClasses/travelersRepo'
+import DestinationsRepo from './jsClasses/destinationsRepo';
+import TripsRepo from './jsClasses/tripsRepo';
 import { 
   displayTravelerTrips, 
   displayTravelerAside, 
   displayQuote, 
   hideQuote,
-  checkInputs,
+  checkRequestInputs,
+  checkLoginInputs,
+  displayDesiredElements,
 } from './domUpdates';
-
 import { 
   getData,
   postTrip
 } from './apiRequests';
 
-import DestinationsRepo from './jsClasses/destinationsRepo';
-import TripsRepo from './jsClasses/tripsRepo';
-
-
 // Global Variables
+let travelersRepo;
 let tripsRepo;
 let destinationsRepo;
 let traveler;
+let travelerID;
 
 // Initial Data and DOM Population
 const populateTravelerMain = () => {
-  Promise.all([getTravelerData(),
+  Promise.all([getTravelerData(travelerID),
     getTripsData(),
     getDestinationsData()
   ])
@@ -53,8 +58,15 @@ const populateTravelerMain = () => {
     });
 }
 
-const getTravelerData = () => {
-  return getData('travelers/2')
+const getTravelerData = travelerID => {
+  return getData(`travelers/${travelerID}`)
+}
+
+const getTravelersData = () => {
+  getData('travelers')
+    .then(response => {
+      travelersRepo = new TravelersRepo(response);
+    })
 }
 
 const getTripsData = () => {
@@ -64,12 +76,10 @@ const getTripsData = () => {
 const getDestinationsData = () => {
   return getData('destinations')
 }
-// FUNCTION CALLED HERE TO DEAL WITH CALL STACK
-populateTravelerMain();
 
 // Function Declarations
 const createQuote = () => {
-  if (!checkInputs(destinationsRepo)) {
+  if (!checkRequestInputs(destinationsRepo)) {
     alert('Invalid input, check your form.')
   } else {
     displayQuote(destinationsRepo);
@@ -92,8 +102,24 @@ const submitTripRequest = () => {
     .then(populateTravelerMain())
 }
 
+const login = () => {
+  const username = usernameInput.value;
+  const password = passwordInput.value;
+  travelerID = checkLoginInputs(username, password, travelersRepo).id;
+  populateTravelerMain();
+  displayDesiredElements('traveler');
+}
+
+const initializePage = () => {
+  Promise.resolve(getTravelersData())
+    .then(
+      displayDesiredElements('login')
+    )
+}
 
 // Event Listeners
-quoteButton.addEventListener('click', createQuote);
-closeQuoteButton.addEventListener('click', closeModal);
-requestButton.addEventListener('click', submitTripRequest);
+document.addEventListener("load", initializePage());
+quoteButton.addEventListener("click", createQuote);
+closeQuoteButton.addEventListener("click", closeModal);
+requestButton.addEventListener("click", submitTripRequest);
+loginButton.addEventListener("click", login)

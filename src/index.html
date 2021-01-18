@@ -7,46 +7,55 @@
 </head>
 
 <body>
-  <header>
-    <h1>Time Travelers</h1>
+  <section class="login-display">
+    <h1>WELCOME TO TIME TRAVELERS</h1>
+    <p>PLEASE ENTER YOUR ACCOUNT INFO</p>
+    <label for="form-username">USERNAME</label>
+    <input type="text" class="form-username" id="form-username">
+    <label for="form-password">PASSWORD</label>
+    <input type="text" class="form-password" id="form-password">
+    <button class="login-button">ENTER SITE</button>
+  </section>
+  <header tabindex="0">
+    <h1>TIME TRAVELERS</h1>
   </header>
-  <nav role="navigation">
-    <h1 class="hidden">Navigation</h1>
+  <nav role="navigation" tabindex="0">
     <article class="trip-request">
-      <p>Plan a trip!</p>
-      <label for="form-date">Departure Date</label>
+      <p>PLAN A TRIP!</p>
+      <label for="form-date">DEPARTURE DATE</label>
       <input type="date" class="form-date" id="form-date">
-      <label for="form-duration">Number of Days</label>
+      <label for="form-duration">NUMBER OF DAYS</label>
       <input type="number" class="form-duration" id="form-duration">
-      <label for="form-travelers">Number of Travelers</label>
+      <label for="form-travelers">NUMBER OF TRAVELERS</label>
       <input type="number" class="form-travelers" id="form-travelers">
-      <label for="form-destination">Destination</label>
+      <label for="form-destination">DESTINATION</label>
       <input class="form-destination" id="form-destination">
-      <button class="quote-button">Get a Quote</button>
+      <button class="quote-button">GET A QUOTE</button>
     </article>
   </nav>
-  <main>
-    <h1 class="hidden">All Trips</h1>
-
-  </main>
-  <aside>
-    <h1>Profile</h1>
-
-  </aside>
-  <footer >
-    <h1 class="hidden">Footer</h1>
-
-  </footer>
-
-  <article class="modal">
+  <article class="modal" tabindex="0">
     <article class="modal-content">
-      <section class="close">Close</section>
+      <section class="close">CLOSE</section>
       <section class="estimate-display">
         
       </section>
-      <button class="request-button">Book This Vacation</button>
+      <button class="request-button">BOOK THIS VACATION</button>
     </article>
   </article>
+  <main tabindex="0">
+    <h1>ALL TRIPS</h1>
+
+  </main>
+  <aside tabindex="0">
+    <h1>PROFILE</h1>
+
+  </aside>
+  <footer tabindex="0">
+    <h1>FOOTER</h1>
+
+  </footer>
+
+  
   <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
 </body>
 </html>

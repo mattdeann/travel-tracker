@@ -17,6 +17,20 @@ body {
   color: $light-blue;
 }
 
+.login-display {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  border: 5px solid $light-blue;
+  box-shadow: 0 0 30px $yellow inset;
+  background: $purple;
+  @include flexDisplay(column, space-evenly, center);
+  @include grow;
+
+  .login-button {
+    @include buttonStyles;
+  }
+}
+
 header {
   grid-column: 1 / -1;
   grid-row: 1 / 2;
@@ -56,6 +70,16 @@ aside {
   grid-row: 2 / 3;
   @include flexDisplay(column, flex-start, center);
   @include sideStyles;
+
+  .title {
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .value {
+    margin-top: 0;
+  }
+
 }
 
 footer {
