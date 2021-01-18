@@ -25,8 +25,8 @@ export const loginButton = document.querySelector(".login-button");
 
 export const displayTravelerTrips = (traveler, tripsRepo, destinationsRepo) => {
   const travelerTrips = tripsRepo.filterTravelerTrips(traveler.id);
+  
   travelerMain.innerHTML = '';
-
   travelerTrips.forEach(trip => {
     travelerMain.insertAdjacentHTML('afterbegin', `
       <article tabindex="0" class="trip" style="background-image: url(${destinationsRepo.findDestinationByID(trip.destinationID).image}" alt ="${destinationsRepo.findDestinationByID(trip.destinationID).alt}">
@@ -43,11 +43,11 @@ export const displayTravelerTrips = (traveler, tripsRepo, destinationsRepo) => {
 }
 
 export const displayTravelerAside = (traveler, tripsRepo, destinationsRepo) => {
-  travelerAside.innerHTML = '<h1>PROFILE</h1>';
   const thisYear = new Date().toJSON().slice(0,4).replace(/-/g, '/');
-  const annualTotal = tripsRepo.totalAnnualTripsCost(traveler.id, thisYear, destinationsRepo)
-  const pendingTotal = tripsRepo.totalPendingTripsCost(traveler.id, destinationsRepo)
+  const annualTotal = tripsRepo.totalAnnualTripsCost(traveler.id, thisYear, destinationsRepo);
+  const pendingTotal = tripsRepo.totalPendingTripsCost(traveler.id, destinationsRepo);
 
+  travelerAside.innerHTML = '<h1>PROFILE</h1>';
   travelerAside.insertAdjacentHTML('beforeend', `<p class="aside-element title">TOTAL SPENT IN ${thisYear}</p><p class="aside-element value">${annualTotal.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>
   <p class="aside-element title">TOTAL OF PENDING TRIPS</p><p class="aside-element value">${pendingTotal.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>`);
 }
@@ -65,11 +65,8 @@ export const displayQuote = destinationsRepo => {
   const tripCost = destinationsRepo.calcTripCost(duration, travelers, destinationID);
 
   travelerContentDisplay.innerHTML = '';
-
   travelerContentDisplay.insertAdjacentHTML("afterbegin", `<img class="quote-image" src="${destination.image}" alt="${destination.alt}">`);
-
   travelerContentDisplay.insertAdjacentHTML("beforeend", `<p>YOUR ESTIMATED COST IS: ${tripCost.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>`);
-
   travelerModal.style.display = "block";
 }
 
@@ -100,7 +97,7 @@ export const constructTodaysTravelers = (travelersRepo, tripsRepo) => {
 export const displayAdminNav = (travelersRepo, tripsRepo, destinationsRepo) => {
   adminNav.innerHTML = '<h1>ADMIN STATISTICS</h1>';
   const thisYear = new Date().toJSON().slice(0, 4).replace(/-/g, '/');
-  //KEEPING HARD CODED DATE SO NEXT TWO VARIABLES !== NOTHING;
+  //KEEPING HARD CODED DATE SINCE NO DATA FOR 2021
   const annualCommissionTotal = tripsRepo.totalAnnualCommission(2020, destinationsRepo);
   
   adminNav.insertAdjacentHTML('beforeend', `<p class="admin-nav-element title">EARNINGS IN ${thisYear}</p><p class="admin-nav-element value">${annualCommissionTotal.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>
@@ -111,7 +108,6 @@ export const displayAdminNav = (travelersRepo, tripsRepo, destinationsRepo) => {
 export const displayAdminModal = (event, destinationsRepo, tripsRepo) => {
   const tripID = event.target.closest("section").id;
   const trip = tripsRepo.findTripByTripID(tripID);
-
   const selectedTripHTML = `
   <article tabindex="0" class="pending-trip" style="background-image: url(${destinationsRepo.findDestinationByID(trip.destinationID).image}" alt ="${destinationsRepo.findDestinationByID(trip.destinationID).alt}">
     <section class="trip-summary">
@@ -165,6 +161,7 @@ export const displayPendingTrips = (tripsRepo, destinationsRepo) => {
 export const checkLoginInputs = (username, password, travelersRepo) => {
   const twoChar = parseInt(username.slice(-2));
   const oneChar = parseInt(username.slice(-1));
+  
   if (travelersRepo.checkForID(twoChar) && password === 'travel2021') {
     return travelersRepo.checkForID(twoChar);
   } else if (travelersRepo.checkForID(oneChar) && password === 'travel2021') {

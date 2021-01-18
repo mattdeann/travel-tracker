@@ -11,7 +11,6 @@ class TripsRepo {
     return this.allTrips.filter(trip => trip.status === "pending");
   }
 
-
   // THIS NEEDS A TEST
   findTripByTripID(tripID) {
     return this.allTrips.find(trip => trip.id === parseInt(tripID));
@@ -30,6 +29,7 @@ class TripsRepo {
 
   totalPendingTripsCost(travelerID, destinationsRepo) {
     const pendingTrips = this.allTrips.filter(trip => trip.userID === travelerID && trip.status === "pending");
+
     return pendingTrips.reduce((totalCost, trip) => {
       const tripCost = destinationsRepo.calcTripCost(trip.duration, trip.travelers, trip.destinationID);
       totalCost += tripCost;
