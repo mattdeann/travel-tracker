@@ -41,8 +41,8 @@ export const displayTravelerAside = (traveler, tripsRepo, destinationsRepo) => {
   const annualTotal = tripsRepo.totalAnnualTripsCost(traveler.id, thisYear, destinationsRepo)
   const pendingTotal = tripsRepo.totalPendingTripsCost(traveler.id, destinationsRepo)
 
-  aside.insertAdjacentHTML('beforeend', `<p class="aside=element title">TOTAL SPENT IN ${thisYear}</p><p class="aside=element value">${annualTotal.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>
-  <p class="aside=element title">TOTAL OF PENDING TRIPS</p><p class="aside=element value">${pendingTotal.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>`);
+  aside.insertAdjacentHTML('beforeend', `<p class="aside-element title">TOTAL SPENT IN ${thisYear}</p><p class="aside-element value">${annualTotal.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>
+  <p class="aside-element title">TOTAL OF PENDING TRIPS</p><p class="aside-element value">${pendingTotal.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>`);
 }
 
 export const displayTravelerPage = (traveler, tripsRepo, destinationsRepo) => {
