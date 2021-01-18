@@ -18,7 +18,7 @@ const destinationInput = document.querySelector(".form-destination");
 import Traveler from './jsClasses/traveler';
 import { 
   displayTravelerTrips, 
-  displayAnnualTotal, 
+  displayTravelerAside, 
   displayQuote, 
   hideQuote,
   checkInputs,
@@ -49,7 +49,7 @@ const populateTravelerMain = () => {
       tripsRepo = new TripsRepo(response[1]);
       destinationsRepo = new DestinationsRepo(response[2]);
       displayTravelerTrips(traveler, tripsRepo, destinationsRepo);
-      displayAnnualTotal(traveler, tripsRepo, destinationsRepo);
+      displayTravelerAside(traveler, tripsRepo, destinationsRepo);
     });
 }
 
