@@ -9,6 +9,7 @@ export const travelerFooter = document.querySelector(".traveler-footer");
 export const adminDisplay = document.querySelector(".admin-display");
 export const adminHeader = document.querySelector(".admin-header");
 export const adminModal = document.querySelector(".admin-modal");
+export const adminNav = document.querySelector(".admin-nav");
 export const adminMain = document.querySelector(".admin-main");
 export const dateInput = document.querySelector(".form-date");
 export const durationInput = document.querySelector(".form-duration");
@@ -174,7 +175,7 @@ export const displayDesiredElements = display => {
     travelerMain.style.visibility = "hidden";
     travelerAside.style.visibility = "hidden";
     travelerFooter.style.visibility = "hidden";
-    adminDisplay.style.display = "initial";
+    adminDisplay.style.display = "grid";
     adminModal.style.visibility = "visible";
     loginDisplay.style.visibility = "hidden";
   }
