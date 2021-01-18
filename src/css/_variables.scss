@@ -9,10 +9,11 @@ $font: BlenderProBold, sans-serif;
   grid-template-rows: $rows;
 };
 
-@mixin flexDisplay($direction, $justify) {
+@mixin flexDisplay($direction, $justify, $align) {
   display: flex;
   flex-direction: $direction;
   justify-content: $justify;
+  align-items: $align;
 };
 
 @mixin headerFooterStyles() {
@@ -27,13 +28,62 @@ $font: BlenderProBold, sans-serif;
   margin: 3px;
 }
 
+@mixin grow() {
+    transition: all .3s ease-in-out; 
+  
+    &:hover,
+    &focus { 
+    transform: scale(1.1); 
+    }
+}
+
+@mixin shrink() {
+  transition: all .3s ease-in-out; 
+
+  &:hover,
+  &focus { 
+  transform: scale(0.95); 
+  }
+}
+
+@mixin hover() {
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    background-color: $dark-purple;
+    color: $pink;
+  }
+}
+
+@mixin scrollbar() {
+  /* width */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: white;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $yellow;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $light-blue;
+}
+}
+
 .hidden {
   display: none;
 }
 
-.pop-up {
-  z-index: 1;
-}
+// .pop-up {
+//   z-index: 1;
+// }
 
 // COLORS
 $black: #09071a;
@@ -49,5 +99,7 @@ $pink: #D61289;
 $blue: #2B7FB5;
 
 $light-blue: #18F5FE;
+
+$yellow: #F9F300;
 
 $grid-border: 5px solid $pink;

@@ -1,13 +1,29 @@
 @mixin navStyles() {
+
+  input {
+    width: 8.5rem;
+  }
   .trip-request {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    margin: 10px;
   }
 
   .quote-button {
+    margin-top: 20px;
     width: 90%;
     border: 1px solid $pink;
+    background-color: $pink;
+    color: $darker-purple;
+    transition: all .3s ease-in-out;
+
+    &:hover,
+    &:focus {
+      background-color: $dark-purple;
+      color: $pink;
+      cursor: pointer;
+    }
   }
 }

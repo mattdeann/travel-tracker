@@ -1,7 +1,8 @@
 import chai from 'chai';
 const expect = chai.expect;
 
-import TripsRepo from '../src/jsClasses/tripsRepo'
+import DestinationsRepo from '../src/jsClasses/destinationsRepo';
+import TripsRepo from '../src/jsClasses/tripsRepo';
 
 describe('TripsRepo', function() {
   let tripsRepo;
@@ -21,7 +22,7 @@ describe('TripsRepo', function() {
       {
         "id": 2,
         "userID": 2,
-        "destinationID": 25,
+        "destinationID": 2,
         "travelers": 5,
         "date": "2020/10/04",
         "duration": 18,
@@ -52,7 +53,7 @@ describe('TripsRepo', function() {
       {
         "id": 2,
         "userID": 2,
-        "destinationID": 25,
+        "destinationID": 2,
         "travelers": 5,
         "date": "2020/10/04",
         "duration": 18,
@@ -66,13 +67,29 @@ describe('TripsRepo', function() {
     expect(tripsRepo.filterTravelerTrips(2)).to.deep.equal([{
       "id": 2,
       "userID": 2,
-      "destinationID": 25,
+      "destinationID": 2,
       "travelers": 5,
       "date": "2020/10/04",
       "duration": 18,
       "status": "pending",
       "suggestedActivities": []
     }]);
+  })
+
+  it('should return all a travelers annual trips', function() {
+    const destinationsData = {"destinations": [
+      {
+        "id": 2,
+        "destination": "Stockholm, Sweden",
+        "estimatedLodgingCostPerDay": 100,
+        "estimatedFlightCostPerPerson": 780,
+        "image": "https://images.unsplash.com/photo-1560089168-6516081f5bf1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+        "alt": "city with boats on the water during the day time"
+      } 
+    ]};
+    const destinationsRepo = new DestinationsRepo(destinationsData);
+
+    expect(tripsRepo.totalAnnualTripsCost(2, 2020, destinationsRepo)).to.equal(6270);
   })
 
 });

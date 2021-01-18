@@ -10,8 +10,9 @@
   <header>
     <h1>Time Travelers</h1>
   </header>
-  <nav>
-    <section class="trip-request">
+  <nav role="navigation">
+    <h1 class="hidden">Navigation</h1>
+    <article class="trip-request">
       <p>Plan a trip!</p>
       <label for="form-date">Departure Date</label>
       <input type="date" class="form-date" id="form-date">
@@ -21,27 +22,30 @@
       <input type="number" class="form-travelers" id="form-travelers">
       <label for="form-destination">Destination</label>
       <input class="form-destination" id="form-destination">
-      <article class="quote-button">Get a Quote!</article>
-    </section>
+      <button class="quote-button">Get a Quote</button>
+    </article>
   </nav>
   <main>
+    <h1 class="hidden">All Trips</h1>
 
   </main>
   <aside>
+    <h1>Profile</h1>
 
   </aside>
-  <footer>
+  <footer >
+    <h1 class="hidden">Footer</h1>
 
   </footer>
 
   <article class="modal">
     <article class="modal-content">
-      <span class="close">Close</span>
+      <section class="close">Close</section>
       <section class="estimate-display">
         
       </section>
+      <button class="request-button">Book This Vacation</button>
     </article>
-    <button class="request-button">Book This Vacation</button>
   </article>
   <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
 </body>

@@ -18,9 +18,10 @@ const destinationInput = document.querySelector(".form-destination");
 import Traveler from './jsClasses/traveler';
 import { 
   displayTravelerTrips, 
-  displayTravelerTotal, 
+  displayAnnualTotal, 
   displayQuote, 
   hideQuote,
+  checkInputs,
 } from './domUpdates';
 
 import { 
@@ -48,7 +49,7 @@ const populateTravelerMain = () => {
       tripsRepo = new TripsRepo(response[1]);
       destinationsRepo = new DestinationsRepo(response[2]);
       displayTravelerTrips(traveler, tripsRepo, destinationsRepo);
-      displayTravelerTotal(traveler, tripsRepo, destinationsRepo);
+      displayAnnualTotal(traveler, tripsRepo, destinationsRepo);
     });
 }
 
@@ -68,7 +69,11 @@ populateTravelerMain();
 
 // Function Declarations
 const createQuote = () => {
-  displayQuote(destinationsRepo);
+  if (!checkInputs(destinationsRepo)) {
+    alert('Invalid input, check your form.')
+  } else {
+    displayQuote(destinationsRepo);
+  }
 }
 
 const closeModal = () => {
@@ -82,7 +87,7 @@ const submitTripRequest = () => {
   const travelers = numTravelersInput.value;
   const destinationID = destinationsRepo.findIDByName(destinationInput.value);
 
-  Promise.resolve(postTrip(tripsRepo.allTrips.trips.length + 1, traveler.id, destinationID, travelers, formattedDate, duration))
+  Promise.resolve(postTrip(tripsRepo.allTrips.length + 1, traveler.id, destinationID, travelers, formattedDate, duration))
     .then(hideQuote())
     .then(populateTravelerMain())
 }

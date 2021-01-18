@@ -17,7 +17,7 @@ export const displayTravelerTrips = (traveler, tripsRepo, destinationsRepo) => {
   main.innerHTML = '';
 
   travelerTrips.forEach(trip => {
-    main.insertAdjacentHTML('beforeend', `
+    main.insertAdjacentHTML('afterbegin', `
       <article class="trip" style="background-image: url(${destinationsRepo.findDestinationByID(trip.destinationID).image}" alt ="${destinationsRepo.findDestinationByID(trip.destinationID).alt}">
         <section class="trip-summary">
           <p class="detail date">${trip.date}</p>
@@ -31,27 +31,27 @@ export const displayTravelerTrips = (traveler, tripsRepo, destinationsRepo) => {
   })
 }
 
-export const displayTravelerTotal = (traveler, tripsRepo, destinationsRepo) => {
-  const allTravelerTrips = tripsRepo.filterTravelerTrips(traveler.id);
+export const displayAnnualTotal = (traveler, tripsRepo, destinationsRepo) => {
+  aside.innerHTML = '<h1>Profile</h1>';
+  const thisYear = new Date().toJSON().slice(0,4).replace(/-/g, '/');
 
-  const total = allTravelerTrips.reduce((totalCost, trip) => {
-    const tripTotal = destinationsRepo.calcTripCost(trip.duration, trip.travelers, trip.destinationID)
+  const total = tripsRepo.totalAnnualTripsCost(traveler.id, thisYear, destinationsRepo)
 
-    totalCost += tripTotal;
-    return totalCost;
-  }, 0)
-
-  aside.insertAdjacentHTML('beforeend', `<p>Total Spent<br>${total.toLocaleString("en-US", {style: "currency", currency: "USD"})}`)
+  aside.insertAdjacentHTML('beforeend', `<p>Total Spent in ${thisYear}<br>${total.toLocaleString("en-US", {style: "currency", currency: "USD"})}`)
 }
 
 export const displayQuote = destinationsRepo => {
   const duration = durationInput.value;
   const travelers = numTravelersInput.value;
   const destinationID = destinationsRepo.findIDByName(destinationInput.value);
-
+  const destination = destinationsRepo.findDestinationByID(destinationID);
   const tripCost = destinationsRepo.calcTripCost(duration, travelers, destinationID);
 
-  estimateDisplay.innerText = `Your estimated cost is: ${tripCost.toLocaleString("en-US", {style: "currency", currency: "USD"})}`;
+  estimateDisplay.innerHTML = '';
+
+  estimateDisplay.insertAdjacentHTML("afterbegin", `<img class="quote-image" src="${destination.image}" alt="${destination.alt}">`);
+
+  estimateDisplay.insertAdjacentHTML("beforeend", `<p>Your estimated cost is: ${tripCost.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>`);
 
   modal.style.display = "block";
 }
@@ -60,29 +60,20 @@ export const hideQuote = () => {
   dateInput.value = null;
   durationInput.value = null;
   numTravelersInput.value = null;
-  destinationInput.value - null;
+  destinationInput.value = null;
   modal.style.display = "none";
 }
 
+export const checkInputs = (destinationsRepo) => {
+  const date = dateInput.value;
+  const duration = durationInput.value;
+  const travelers = numTravelersInput.value;
+  const destinationID = destinationsRepo.findIDByName(destinationInput.value);
 
-// export const displayPendingTrip = destinationsRepo => {
-//   const date = dateInput.value;
-//   const duration = durationInput.value;
-//   const travelers = numTravelersInput.value;
-//   const destinationID = destinationsRepo.findIDByName(destinationInput.value);
-//   const tripImage = destinationsRepo.findImage(destinationID);
-//   const tripAlt = destinationsRepo.findImageAlt(destinationID);
-  
-//   main.insertAdjacentHTML('beforeend', `
-//       <article class="trip" style="background-image: url(${tripImage})" alt="${tripAlt}">
-//         <section class="trip-summary">
-//           <p class="detail date">${date}</p>
-//           <p class="detail duration">${duration} day trip to</p>
-//           <p class-"detail destination">${destinationsRepo.findDestinationByID(destinationID).destination}</p>
-//           <p class="detail travelers">Travelers: ${travelers}</p>
-//           <p class="detail status">Status: Pending</p>
-//         </section>
-//       </article>
-//     `);
-// }
+  if (date === '' || 1 > duration || 1 > travelers || destinationID === undefined) {
+    return false;
+  } else {
+    return true;
+  }
+}
 
