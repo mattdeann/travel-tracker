@@ -1,17 +1,20 @@
-
-
 // Query Selectors
+export const loginDisplay = document.querySelector(".login-display");
+export const header = document.querySelector("header");
+export const nav = document.querySelector("nav");
+export const modal = document.querySelector(".modal");
 export const main = document.querySelector("main");
 export const aside = document.querySelector("aside");
+export const footer = document.querySelector("footer");
 export const dateInput = document.querySelector(".form-date");
 export const durationInput = document.querySelector(".form-duration");
 export const numTravelersInput = document.querySelector(".form-travelers");
 export const destinationInput = document.querySelector(".form-destination");
-export const modal = document.querySelector(".modal");
 export const estimateDisplay = document.querySelector(".estimate-display");
 
 
 // Functions
+
 export const displayTravelerTrips = (traveler, tripsRepo, destinationsRepo) => {
   const travelerTrips = tripsRepo.filterTravelerTrips(traveler.id);
   main.innerHTML = '';
@@ -39,6 +42,11 @@ export const displayTravelerAside = (traveler, tripsRepo, destinationsRepo) => {
 
   aside.insertAdjacentHTML('beforeend', `<p class="aside=element title">Total Spent in ${thisYear}</p><p class="aside=element value">${annualTotal.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>
   <p class="aside=element title">Total of Pending Trips</p><p class="aside=element value">${pendingTotal.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>`);
+}
+
+export const displayTravelerPage = (traveler, tripsRepo, destinationsRepo) => {
+  displayTravelerTrips(traveler, tripsRepo, destinationsRepo);
+  displayTravelerAside(traveler, tripsRepo, destinationsRepo);
 }
 
 export const displayQuote = destinationsRepo => {
@@ -75,6 +83,26 @@ export const checkInputs = (destinationsRepo) => {
     return false;
   } else {
     return true;
+  }
+}
+
+export const displayDesiredElements = display => {
+  if (display === 'login') {
+    header.style.visibility = "hidden";
+    nav.style.visibility = "hidden";
+    modal.style.visibility = "hidden";
+    main.style.visibility = "hidden";
+    aside.style.visibility = "hidden";
+    footer.style.visibility = "hidden";
+    loginDisplay.style.visibility = "visible";
+  } else if (display === 'traveler') {
+    header.style.visibility = "visible";
+    nav.style.visibility = "visible";
+    modal.style.visibility = "visible";
+    main.style.visibility = "visible";
+    aside.style.visibility = "visible";
+    footer.style.visibility = "visible";
+    loginDisplay.style.visibility = "hidden";
   }
 }
 

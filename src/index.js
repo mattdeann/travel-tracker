@@ -22,6 +22,7 @@ import {
   displayQuote, 
   hideQuote,
   checkInputs,
+  displayDesiredElements,
 } from './domUpdates';
 
 import { 
@@ -39,6 +40,10 @@ let destinationsRepo;
 let traveler;
 
 // Initial Data and DOM Population
+const initializePage = () => {
+  displayDesiredElements('login');
+}
+
 const populateTravelerMain = () => {
   Promise.all([getTravelerData(),
     getTripsData(),
@@ -65,7 +70,7 @@ const getDestinationsData = () => {
   return getData('destinations')
 }
 // FUNCTION CALLED HERE TO DEAL WITH CALL STACK
-populateTravelerMain();
+// populateTravelerMain();
 
 // Function Declarations
 const createQuote = () => {
@@ -94,6 +99,7 @@ const submitTripRequest = () => {
 
 
 // Event Listeners
+document.addEventListener("load", initializePage())
 quoteButton.addEventListener('click', createQuote);
 closeQuoteButton.addEventListener('click', closeModal);
 requestButton.addEventListener('click', submitTripRequest);
