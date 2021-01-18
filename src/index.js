@@ -34,6 +34,7 @@ import {
   checkLoginInputs,
   displayDesiredElements,
   adminMain,
+  displayAdminNav,
   displayAdminModal,
   hideRequest
 } from './domUpdates';
@@ -72,6 +73,7 @@ const populateAdminMain = () => {
     .then(response => {
       tripsRepo = new TripsRepo(response[0]);
       destinationsRepo = new DestinationsRepo(response[1]);
+      displayAdminNav(travelersRepo, tripsRepo, destinationsRepo);
       displayPendingTrips(tripsRepo, destinationsRepo);
     });
 }

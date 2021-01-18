@@ -84,6 +84,30 @@ export const hideRequest = () => {
   adminModal.style.display = "none";
 }
 
+export const constructTodaysTravelers = (travelersRepo, tripsRepo) => {
+  const todaysTrips = tripsRepo.filterTripsToday("2020/06/22");
+  const travelerNames = todaysTrips.map(trip => {
+    const traveler = travelersRepo.findTravelerNameByID(trip.userID);
+    return traveler.name;
+  })
+
+  return travelerNames.forEach(name => {
+    adminNav.insertAdjacentHTML('beforeend', `<p class="admin-nav-element value">${name}</p>`)
+  })
+}
+
+export const displayAdminNav = (travelersRepo, tripsRepo, destinationsRepo) => {
+  adminNav.innerHTML = '<h1>ADMIN STATISTICS</h1>';
+  const thisYear = new Date().toJSON().slice(0, 4).replace(/-/g, '/');
+  //KEEPING HARD CODED DATE SO NEXT TWO VARIABLES !== NOTHING;
+  const annualCommissionTotal = tripsRepo.totalAnnualCommission(2020, destinationsRepo);
+  
+
+  adminNav.insertAdjacentHTML('beforeend', `<p class="admin-nav-element title">EARNINGS IN ${thisYear}</p><p class="admin-nav-element value">${annualCommissionTotal.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>
+  <p class="admin-nav-element title">WHO'S TRAVELING TODAY?</p>`);
+  constructTodaysTravelers(travelersRepo, tripsRepo);
+}
+
 export const displayAdminModal = (event, destinationsRepo, tripsRepo) => {
   const tripID = event.target.closest("section").id;
   const trip = tripsRepo.findTripByTripID(tripID);
@@ -149,6 +173,7 @@ export const checkLoginInputs = (username, password, travelersRepo) => {
   }
 }
 
+// REFACTOR THIS TO ADD A CLASS OF DISPLAY: HIDDEN???
 export const displayDesiredElements = display => {
   if (display === 'login') {
     travelerHeader.style.visibility = "hidden";
