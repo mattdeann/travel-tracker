@@ -11,6 +11,8 @@ export const durationInput = document.querySelector(".form-duration");
 export const numTravelersInput = document.querySelector(".form-travelers");
 export const destinationInput = document.querySelector(".form-destination");
 export const estimateDisplay = document.querySelector(".estimate-display");
+export const usernameInput = document.querySelector(".form-userName");
+export const loginButton = document.querySelector(".login-button");
 
 
 // Functions
@@ -24,10 +26,10 @@ export const displayTravelerTrips = (traveler, tripsRepo, destinationsRepo) => {
       <article tabindex="0" class="trip" style="background-image: url(${destinationsRepo.findDestinationByID(trip.destinationID).image}" alt ="${destinationsRepo.findDestinationByID(trip.destinationID).alt}">
         <section class="trip-summary">
           <p class="detail date">${trip.date}</p>
-          <p class="detail duration">${trip.duration} day trip to</p>
+          <p class="detail duration">${trip.duration} DAYS IN</p>
           <p class-"detail destination">${destinationsRepo.findDestinationByID(trip.destinationID).destination}</p>
-          <p class="detail travelers">Travelers: ${trip.travelers}</p>
-          <p class="detail status">Status: ${trip.status}</p>
+          <p class="detail travelers">TRAVELERS: ${trip.travelers}</p>
+          <p class="detail status">STATUS: ${trip.status}</p>
         </section>
       </article>
     `);
@@ -35,13 +37,13 @@ export const displayTravelerTrips = (traveler, tripsRepo, destinationsRepo) => {
 }
 
 export const displayTravelerAside = (traveler, tripsRepo, destinationsRepo) => {
-  aside.innerHTML = '<h1>Profile</h1>';
+  aside.innerHTML = '<h1>PROFILE</h1>';
   const thisYear = new Date().toJSON().slice(0,4).replace(/-/g, '/');
   const annualTotal = tripsRepo.totalAnnualTripsCost(traveler.id, thisYear, destinationsRepo)
   const pendingTotal = tripsRepo.totalPendingTripsCost(traveler.id, destinationsRepo)
 
-  aside.insertAdjacentHTML('beforeend', `<p class="aside=element title">Total Spent in ${thisYear}</p><p class="aside=element value">${annualTotal.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>
-  <p class="aside=element title">Total of Pending Trips</p><p class="aside=element value">${pendingTotal.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>`);
+  aside.insertAdjacentHTML('beforeend', `<p class="aside=element title">TOTAL SPENT IN ${thisYear}</p><p class="aside=element value">${annualTotal.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>
+  <p class="aside=element title">TOTAL OF PENDING TRIPS</p><p class="aside=element value">${pendingTotal.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>`);
 }
 
 export const displayTravelerPage = (traveler, tripsRepo, destinationsRepo) => {
@@ -60,7 +62,7 @@ export const displayQuote = destinationsRepo => {
 
   estimateDisplay.insertAdjacentHTML("afterbegin", `<img class="quote-image" src="${destination.image}" alt="${destination.alt}">`);
 
-  estimateDisplay.insertAdjacentHTML("beforeend", `<p>Your estimated cost is: ${tripCost.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>`);
+  estimateDisplay.insertAdjacentHTML("beforeend", `<p>YOUR ESTIMATED COST IS: ${tripCost.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>`);
 
   modal.style.display = "block";
 }
@@ -73,7 +75,7 @@ export const hideQuote = () => {
   modal.style.display = "none";
 }
 
-export const checkInputs = (destinationsRepo) => {
+export const checkRequestInputs = (destinationsRepo) => {
   const date = dateInput.value;
   const duration = durationInput.value;
   const travelers = numTravelersInput.value;
@@ -84,6 +86,22 @@ export const checkInputs = (destinationsRepo) => {
   } else {
     return true;
   }
+}
+
+export const checkLoginInputs = () => {
+  const twoChar
+  // get value of username login
+  // if last 2 indices of string are numbers, return numbers as travelerID
+  // if not, see if just the last index is a number, return that number
+  // if still here, return an alert for the user
+  if (typeof parseInt(usernameInput.value.slice(-2)) {
+    return 
+  }
+
+}
+
+export const login = id => {
+
 }
 
 export const displayDesiredElements = display => {

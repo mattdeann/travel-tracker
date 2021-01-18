@@ -21,7 +21,8 @@ import {
   displayTravelerAside, 
   displayQuote, 
   hideQuote,
-  checkInputs,
+  checkRequestInputs,
+  checkLoginInputs,
   displayDesiredElements,
 } from './domUpdates';
 
@@ -74,7 +75,7 @@ const getDestinationsData = () => {
 
 // Function Declarations
 const createQuote = () => {
-  if (!checkInputs(destinationsRepo)) {
+  if (!checkRequestInputs(destinationsRepo)) {
     alert('Invalid input, check your form.')
   } else {
     displayQuote(destinationsRepo);
