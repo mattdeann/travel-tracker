@@ -95,5 +95,17 @@ describe('TripsRepo', function() {
   it('should return the total for pending trips', function() {
     expect(tripsRepo.totalPendingTripsCost(2, destinationsRepo)).to.equal(6270);
   })
+  it('should return all pending trips', function() {
+    expect(tripsRepo.filterPendingTrips()).to.deep.equal([{
+      "id": 2,
+      "userID": 2,
+      "destinationID": 2,
+      "travelers": 5,
+      "date": "2020/10/04",
+      "duration": 18,
+      "status": "pending",
+      "suggestedActivities": []
+    }]);
+  })
 
 });

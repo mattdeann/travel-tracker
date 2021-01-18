@@ -91,6 +91,25 @@ export const checkRequestInputs = (destinationsRepo) => {
   }
 }
 
+export const displayPendingTrips = (tripsRepo, destinationsRepo) => {
+  const pendingTrips = tripsRepo.filterTravelerTrips(traveler.id);
+  travelerMain.innerHTML = '';
+
+  travelerTrips.forEach(trip => {
+    travelerMain.insertAdjacentHTML('afterbegin', `
+      <article tabindex="0" class="trip" style="background-image: url(${destinationsRepo.findDestinationByID(trip.destinationID).image}" alt ="${destinationsRepo.findDestinationByID(trip.destinationID).alt}">
+        <section class="trip-summary">
+          <p class="detail date">${trip.date}</p>
+          <p class="detail duration">${trip.duration} DAYS IN</p>
+          <p class-"detail destination">${destinationsRepo.findDestinationByID(trip.destinationID).destination}</p>
+          <p class="detail travelers">TRAVELERS: ${trip.travelers}</p>
+          <p class="detail status">STATUS: ${trip.status}</p>
+        </section>
+      </article>
+    `);
+  })
+}
+
 export const checkLoginInputs = (username, password, travelersRepo) => {
   const twoChar = parseInt(username.slice(-2));
   const oneChar = parseInt(username.slice(-1));
