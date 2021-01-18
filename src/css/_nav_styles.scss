@@ -1,3 +1,5 @@
+@import "variables";
+
 @mixin navStyles() {
   min-height: 400px;
 
@@ -13,18 +15,6 @@
   }
 
   .quote-button {
-    margin-top: 20px;
-    width: 90%;
-    border: 1px solid $pink;
-    background-color: $pink;
-    color: $darker-purple;
-    transition: all .3s ease-in-out;
-
-    &:hover,
-    &:focus {
-      background-color: $dark-purple;
-      color: $pink;
-      cursor: pointer;
-    }
+    @include buttonStyles;
   }
 }
