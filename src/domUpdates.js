@@ -92,13 +92,14 @@ export const checkRequestInputs = (destinationsRepo) => {
 }
 
 export const displayPendingTrips = (tripsRepo, destinationsRepo) => {
-  const pendingTrips = tripsRepo.filterTravelerTrips(traveler.id);
-  travelerMain.innerHTML = '';
+  const pendingTrips = tripsRepo.filterPendingTrips();
+  adminMain.innerHTML = '';
 
-  travelerTrips.forEach(trip => {
-    travelerMain.insertAdjacentHTML('afterbegin', `
+  pendingTrips.forEach(trip => {
+    adminMain.insertAdjacentHTML('afterbegin', `
       <article tabindex="0" class="trip" style="background-image: url(${destinationsRepo.findDestinationByID(trip.destinationID).image}" alt ="${destinationsRepo.findDestinationByID(trip.destinationID).alt}">
         <section class="trip-summary">
+        <p class="detail travler">TRAVELER ID: ${trip.userID}</p>
           <p class="detail date">${trip.date}</p>
           <p class="detail duration">${trip.duration} DAYS IN</p>
           <p class-"detail destination">${destinationsRepo.findDestinationByID(trip.destinationID).destination}</p>
@@ -113,7 +114,6 @@ export const displayPendingTrips = (tripsRepo, destinationsRepo) => {
 export const checkLoginInputs = (username, password, travelersRepo) => {
   const twoChar = parseInt(username.slice(-2));
   const oneChar = parseInt(username.slice(-1));
-
   if (travelersRepo.checkForID(twoChar) && password === 'travel2021') {
     return travelersRepo.checkForID(twoChar);
   } else if (travelersRepo.checkForID(oneChar) && password === 'travel2021') {

@@ -22,11 +22,13 @@ import Traveler from './jsClasses/traveler';
 import TravelersRepo from './jsClasses/travelersRepo'
 import DestinationsRepo from './jsClasses/destinationsRepo';
 import TripsRepo from './jsClasses/tripsRepo';
+import Admin from './jsClasses/admin';
 import { 
   displayTravelerTrips, 
   displayTravelerAside, 
   displayQuote, 
   hideQuote,
+  displayPendingTrips,
   checkRequestInputs,
   checkLoginInputs,
   displayDesiredElements,
@@ -42,6 +44,7 @@ let tripsRepo;
 let destinationsRepo;
 let traveler;
 let travelerID;
+const admin = new Admin();
 
 // Initial Data and DOM Population
 const populateTravelerMain = () => {
@@ -55,6 +58,17 @@ const populateTravelerMain = () => {
       destinationsRepo = new DestinationsRepo(response[2]);
       displayTravelerTrips(traveler, tripsRepo, destinationsRepo);
       displayTravelerAside(traveler, tripsRepo, destinationsRepo);
+    });
+}
+
+const populateAdminMain = () => {
+  Promise.all([getTripsData(),
+    getDestinationsData()
+  ])
+    .then(response => {
+      tripsRepo = new TripsRepo(response[0]);
+      destinationsRepo = new DestinationsRepo(response[1]);
+      displayPendingTrips(tripsRepo, destinationsRepo);
     });
 }
 
@@ -102,16 +116,19 @@ const submitTripRequest = () => {
     .then(populateTravelerMain())
 }
 
+
 const login = () => {
   const username = usernameInput.value;
   const password = passwordInput.value;
-  travelerID = checkLoginInputs(username, password, travelersRepo).id;
-  populateTravelerMain();
-  displayDesiredElements('traveler');
-}
 
-const checkAdminLogin = () => {
-  
+  if (admin.checkCredentials(username, password)) {
+    populateAdminMain();
+    displayDesiredElements('admin');
+  } else {
+    travelerID = checkLoginInputs(username, password, travelersRepo).id;
+    populateTravelerMain();
+    displayDesiredElements('traveler');
+  }
 }
 
 const initializePage = () => {

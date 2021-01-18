@@ -17,7 +17,7 @@ describe('admin', function() {
   it('should hold credentials', function() {
     expect(admin).to.deep.equal({
       "username": "agency",
-      "password": "password2021"
+      "password": "travel2021"
     });
   })
 

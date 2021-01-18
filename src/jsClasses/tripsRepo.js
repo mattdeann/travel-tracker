@@ -7,6 +7,10 @@ class TripsRepo {
     return this.allTrips.filter(trip => trip.userID === travelerID);
   }
 
+  filterPendingTrips() {
+    return this.allTrips.filter(trip => trip.status === "pending");
+  }
+
   //TWo functions belo should have ANOTHER HELPER FUNCTION probs, CODE SMELLS BAD
   totalAnnualTripsCost(travelerID, year, destinationsRepo) {
     const annualTrips = this.allTrips.filter(trip => trip.userID === travelerID && trip.date.includes(year));
