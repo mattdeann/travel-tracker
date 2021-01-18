@@ -1,0 +1,18 @@
+@import "variables";
+
+@mixin adminDisplay() {
+  display: grid;
+  grid-template-rows: 2fr 10fr;
+  grid-template-columns: 1fr;
+
+  header {
+    border: 2px solid $pink;
+    grid-row: 1 / 2;
+    grid-column: 1 / -1;
+  }
+
+  main {
+    grid-row: 2 / -1;
+    grid-column: 1 / -1;
+  }
+}
