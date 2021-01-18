@@ -32,6 +32,8 @@ import {
   checkRequestInputs,
   checkLoginInputs,
   displayDesiredElements,
+  adminMain,
+  displayAdminModal
 } from './domUpdates';
 import { 
   getData,
@@ -116,6 +118,10 @@ const submitTripRequest = () => {
     .then(populateTravelerMain())
 }
 
+const displayRequest = event => {
+  displayAdminModal(event, destinationsRepo, tripsRepo);
+}
+
 
 const login = () => {
   const username = usernameInput.value;
@@ -143,4 +149,5 @@ document.addEventListener("load", initializePage());
 quoteButton.addEventListener("click", createQuote);
 closeQuoteButton.addEventListener("click", closeModal);
 requestButton.addEventListener("click", submitTripRequest);
-loginButton.addEventListener("click", login)
+loginButton.addEventListener("click", login);
+adminMain.addEventListener("click", displayRequest)

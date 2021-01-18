@@ -1,17 +1,33 @@
 @import "variables";
 @import "trip_styles";
+@import "modal_styles";
 
 @mixin adminDisplay() {
   grid-row: 1 / -1;
   grid-column: 1 / -1;
   padding: 10px;
   overflow-y: auto;
-  @include tripStyles;
 
   .admin-header {
-    border: 2px solid $pink;
     grid-row: 1 / 2;
     grid-column: 1 / -1;
+  }
+
+  .admin-modal {
+    @include modalStyles;
+
+    .pending-trip {
+      @include tripStyles;
+      padding-top: 0;
+      padding: 1rem;
+      height: 20rem;
+      width: 30rem;
+      background-size: cover;
+    }
+
+    .trip-summary {
+      @include flexDisplay(column, center, center);
+    }
   }
 
   main {
@@ -20,6 +36,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 15px;
+    margin: 3rem;
     padding: 10px;
     overflow-y: auto;
     @include tripStyles;

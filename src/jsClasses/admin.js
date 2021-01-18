@@ -5,9 +5,7 @@ class Traveler {
   }
 
   checkCredentials(username, password) {
-    console.log(this.username)
-    console.log(username)
-    if (username == this.username && password == this.password) {
+    if (username === this.username && password === this.password) {
       return true;
     } else {
       return false;

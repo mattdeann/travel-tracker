@@ -14,7 +14,7 @@ export const dateInput = document.querySelector(".form-date");
 export const durationInput = document.querySelector(".form-duration");
 export const numTravelersInput = document.querySelector(".form-travelers");
 export const destinationInput = document.querySelector(".form-destination");
-export const estimateDisplay = document.querySelector(".estimate-display");
+export const contentDisplay = document.querySelector(".content-display");
 export const loginButton = document.querySelector(".login-button");
 
 
@@ -30,7 +30,7 @@ export const displayTravelerTrips = (traveler, tripsRepo, destinationsRepo) => {
         <section class="trip-summary">
           <p class="detail date">${trip.date}</p>
           <p class="detail duration">${trip.duration} DAYS IN</p>
-          <p class-"detail destination">${destinationsRepo.findDestinationByID(trip.destinationID).destination}</p>
+          <p class="detail destination">${destinationsRepo.findDestinationByID(trip.destinationID).destination}</p>
           <p class="detail travelers">TRAVELERS: ${trip.travelers}</p>
           <p class="detail status">STATUS: ${trip.status}</p>
         </section>
@@ -61,11 +61,11 @@ export const displayQuote = destinationsRepo => {
   const destination = destinationsRepo.findDestinationByID(destinationID);
   const tripCost = destinationsRepo.calcTripCost(duration, travelers, destinationID);
 
-  estimateDisplay.innerHTML = '';
+  contentDisplay.innerHTML = '';
 
-  estimateDisplay.insertAdjacentHTML("afterbegin", `<img class="quote-image" src="${destination.image}" alt="${destination.alt}">`);
+  contentDisplay.insertAdjacentHTML("afterbegin", `<img class="quote-image" src="${destination.image}" alt="${destination.alt}">`);
 
-  estimateDisplay.insertAdjacentHTML("beforeend", `<p>YOUR ESTIMATED COST IS: ${tripCost.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>`);
+  contentDisplay.insertAdjacentHTML("beforeend", `<p>YOUR ESTIMATED COST IS: ${tripCost.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>`);
 
   travelerModal.style.display = "block";
 }
@@ -76,6 +76,26 @@ export const hideQuote = () => {
   numTravelersInput.value = null;
   destinationInput.value = null;
   travelerModal.style.display = "none";
+}
+
+export const displayAdminModal = (event, destinationsRepo, tripsRepo) => {
+  const tripID = event.target.closest("section").id;
+  const trip = tripsRepo.findTripByTripID(tripID);
+
+  const selectedTripHTML = `
+  <article tabindex="0" class="pending-trip" style="background-image: url(${destinationsRepo.findDestinationByID(trip.destinationID).image}" alt ="${destinationsRepo.findDestinationByID(trip.destinationID).alt}">
+    <section class="trip-summary">
+      <p class="detail date">${trip.date}</p>
+      <p class="detail duration">${trip.duration} DAYS IN</p>
+      <p class="detail destination">${destinationsRepo.findDestinationByID(trip.destinationID).destination}</p>
+      <p class="detail travelers">TRAVELERS: ${trip.travelers}</p>
+      <p class="detail status">STATUS: ${trip.status}</p>
+    </section>
+  </article>`
+
+  contentDisplay.innerHTML = '';
+  contentDisplay.insertAdjacentHTML("afterbegin", selectedTripHTML);
+  adminModal.style.display = "block";
 }
 
 export const checkRequestInputs = (destinationsRepo) => {
@@ -98,7 +118,7 @@ export const displayPendingTrips = (tripsRepo, destinationsRepo) => {
   pendingTrips.forEach(trip => {
     adminMain.insertAdjacentHTML('afterbegin', `
       <article tabindex="0" class="trip" style="background-image: url(${destinationsRepo.findDestinationByID(trip.destinationID).image}" alt ="${destinationsRepo.findDestinationByID(trip.destinationID).alt}">
-        <section class="trip-summary">
+        <section class="trip-summary" id="${trip.id}">
         <p class="detail travler">TRAVELER ID: ${trip.userID}</p>
           <p class="detail date">${trip.date}</p>
           <p class="detail duration">${trip.duration} DAYS IN</p>
@@ -150,7 +170,7 @@ export const displayDesiredElements = display => {
     travelerAside.style.visibility = "hidden";
     travelerFooter.style.visibility = "hidden";
     adminDisplay.style.display = "initial";
-    adminModal.style.visibility = "hidden";
+    adminModal.style.visibility = "visible";
     loginDisplay.style.visibility = "hidden";
   }
 }
