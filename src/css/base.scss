@@ -24,6 +24,7 @@ body {
   box-shadow: 0 0 30px $yellow inset;
   background: $purple;
   @include flexDisplay(column, space-evenly, center);
+  @include grow;
 
   .login-button {
     @include buttonStyles;
