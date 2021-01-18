@@ -31,18 +31,13 @@ export const displayTravelerTrips = (traveler, tripsRepo, destinationsRepo) => {
   })
 }
 
-export const displayTravelerTotal = (traveler, tripsRepo, destinationsRepo) => {
+export const displayAnnualTotal = (traveler, tripsRepo, destinationsRepo) => {
   aside.innerHTML = '<h1>Profile</h1>';
+  const thisYear = new Date().toJSON().slice(0,4).replace(/-/g, '/');
 
-  const allTravelerTrips = tripsRepo.filterTravelerTrips(traveler.id);
-  const total = allTravelerTrips.reduce((totalCost, trip) => {
-    const tripTotal = destinationsRepo.calcTripCost(trip.duration, trip.travelers, trip.destinationID)
+  const total = tripsRepo.totalAnnualTripsCost(traveler.id, thisYear, destinationsRepo)
 
-    totalCost += tripTotal;
-    return totalCost;
-  }, 0)
-
-  aside.insertAdjacentHTML('beforeend', `<p>Total Spent<br>${total.toLocaleString("en-US", {style: "currency", currency: "USD"})}`)
+  aside.insertAdjacentHTML('beforeend', `<p>Total Spent in ${thisYear}<br>${total.toLocaleString("en-US", {style: "currency", currency: "USD"})}`)
 }
 
 export const displayQuote = destinationsRepo => {
