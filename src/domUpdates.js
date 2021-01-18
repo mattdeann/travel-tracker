@@ -1,11 +1,15 @@
 // Query Selectors
 export const loginDisplay = document.querySelector(".login-display");
-export const header = document.querySelector("header");
-export const nav = document.querySelector("nav");
-export const modal = document.querySelector(".modal");
-export const main = document.querySelector("main");
-export const aside = document.querySelector("aside");
-export const footer = document.querySelector("footer");
+export const travelerHeader = document.querySelector(".traveler-header");
+export const travelerNav = document.querySelector(".traveler-nav");
+export const travelerModal = document.querySelector(".traveler-modal");
+export const travelerMain = document.querySelector(".traveler-main");
+export const travelerAside = document.querySelector(".traveler-aside");
+export const travelerFooter = document.querySelector(".traveler-footer");
+export const adminDisplay = document.querySelector(".admin-display");
+export const adminHeader = document.querySelector(".admin-header");
+export const adminModal = document.querySelector(".admin-modal");
+export const adminMain = document.querySelector(".admin-main");
 export const dateInput = document.querySelector(".form-date");
 export const durationInput = document.querySelector(".form-duration");
 export const numTravelersInput = document.querySelector(".form-travelers");
@@ -18,10 +22,10 @@ export const loginButton = document.querySelector(".login-button");
 
 export const displayTravelerTrips = (traveler, tripsRepo, destinationsRepo) => {
   const travelerTrips = tripsRepo.filterTravelerTrips(traveler.id);
-  main.innerHTML = '';
+  travelerMain.innerHTML = '';
 
   travelerTrips.forEach(trip => {
-    main.insertAdjacentHTML('afterbegin', `
+    travelerMain.insertAdjacentHTML('afterbegin', `
       <article tabindex="0" class="trip" style="background-image: url(${destinationsRepo.findDestinationByID(trip.destinationID).image}" alt ="${destinationsRepo.findDestinationByID(trip.destinationID).alt}">
         <section class="trip-summary">
           <p class="detail date">${trip.date}</p>
@@ -36,12 +40,12 @@ export const displayTravelerTrips = (traveler, tripsRepo, destinationsRepo) => {
 }
 
 export const displayTravelerAside = (traveler, tripsRepo, destinationsRepo) => {
-  aside.innerHTML = '<h1>PROFILE</h1>';
+  travelerAside.innerHTML = '<h1>PROFILE</h1>';
   const thisYear = new Date().toJSON().slice(0,4).replace(/-/g, '/');
   const annualTotal = tripsRepo.totalAnnualTripsCost(traveler.id, thisYear, destinationsRepo)
   const pendingTotal = tripsRepo.totalPendingTripsCost(traveler.id, destinationsRepo)
 
-  aside.insertAdjacentHTML('beforeend', `<p class="aside-element title">TOTAL SPENT IN ${thisYear}</p><p class="aside-element value">${annualTotal.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>
+  travelerAside.insertAdjacentHTML('beforeend', `<p class="aside-element title">TOTAL SPENT IN ${thisYear}</p><p class="aside-element value">${annualTotal.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>
   <p class="aside-element title">TOTAL OF PENDING TRIPS</p><p class="aside-element value">${pendingTotal.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>`);
 }
 
@@ -63,7 +67,7 @@ export const displayQuote = destinationsRepo => {
 
   estimateDisplay.insertAdjacentHTML("beforeend", `<p>YOUR ESTIMATED COST IS: ${tripCost.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>`);
 
-  modal.style.display = "block";
+  travelerModal.style.display = "block";
 }
 
 export const hideQuote = () => {
@@ -71,7 +75,7 @@ export const hideQuote = () => {
   durationInput.value = null;
   numTravelersInput.value = null;
   destinationInput.value = null;
-  modal.style.display = "none";
+  travelerModal.style.display = "none";
 }
 
 export const checkRequestInputs = (destinationsRepo) => {
@@ -102,20 +106,31 @@ export const checkLoginInputs = (username, password, travelersRepo) => {
 
 export const displayDesiredElements = display => {
   if (display === 'login') {
-    header.style.visibility = "hidden";
-    nav.style.visibility = "hidden";
-    modal.style.visibility = "hidden";
-    main.style.visibility = "hidden";
-    aside.style.visibility = "hidden";
-    footer.style.visibility = "hidden";
+    travelerHeader.style.visibility = "hidden";
+    travelerNav.style.visibility = "hidden";
+    travelerModal.style.visibility = "hidden";
+    travelerMain.style.visibility = "hidden";
+    travelerAside.style.visibility = "hidden";
+    travelerFooter.style.visibility = "hidden";
+    adminDisplay.style.display = "none";
     loginDisplay.style.visibility = "visible";
   } else if (display === 'traveler') {
-    header.style.visibility = "visible";
-    nav.style.visibility = "visible";
-    modal.style.visibility = "visible";
-    main.style.visibility = "visible";
-    aside.style.visibility = "visible";
-    footer.style.visibility = "visible";
+    travelerHeader.style.visibility = "visible";
+    travelerNav.style.visibility = "visible";
+    travelerModal.style.visibility = "visible";
+    travelerMain.style.visibility = "visible";
+    travelerAside.style.visibility = "visible";
+    travelerFooter.style.visibility = "visible";
+    adminDisplay.style.display = "none";
+    loginDisplay.style.visibility = "hidden";
+  } else if (display === 'admin') {
+    travelerHeader.style.visibility = "hidden";
+    travelerNav.style.visibility = "hidden";
+    travelerModal.style.visibility = "hidden";
+    travelerMain.style.visibility = "hidden";
+    travelerAside.style.visibility = "hidden";
+    travelerFooter.style.visibility = "hidden";
+    adminDisplay.style.display = "grid";
     loginDisplay.style.visibility = "hidden";
   }
 }

@@ -110,6 +110,10 @@ const login = () => {
   displayDesiredElements('traveler');
 }
 
+const checkAdminLogin = () => {
+  
+}
+
 const initializePage = () => {
   Promise.resolve(getTravelersData())
     .then(

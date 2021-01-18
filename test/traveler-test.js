@@ -3,7 +3,7 @@ const expect = chai.expect;
 
 import Traveler from '../src/jsClasses/traveler'
 
-describe('See if the tests are running', function() {
+describe('Traveler', function() {
   let travelerData;
   let traveler;
   
@@ -17,8 +17,11 @@ describe('See if the tests are running', function() {
     traveler = new Traveler(travelerData);
   })
 
-  it('should store traveler data', function() {
+  it('should be an instance of the Traveler class', function() {
     expect(traveler).to.be.an.instanceOf(Traveler);
+  })
+
+  it('should store traveler data', function() {
     expect(traveler).to.deep.equal({
       "id": 1,
       "name": "Ham Leadbeater",
