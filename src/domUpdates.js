@@ -14,7 +14,8 @@ export const dateInput = document.querySelector(".form-date");
 export const durationInput = document.querySelector(".form-duration");
 export const numTravelersInput = document.querySelector(".form-travelers");
 export const destinationInput = document.querySelector(".form-destination");
-export const contentDisplay = document.querySelector(".content-display");
+export const travelerContentDisplay = document.querySelector(".traveler-content-display");
+export const adminContentDisplay = document.querySelector(".admin-content-display");
 export const loginButton = document.querySelector(".login-button");
 
 
@@ -61,11 +62,11 @@ export const displayQuote = destinationsRepo => {
   const destination = destinationsRepo.findDestinationByID(destinationID);
   const tripCost = destinationsRepo.calcTripCost(duration, travelers, destinationID);
 
-  contentDisplay.innerHTML = '';
+  travelerContentDisplay.innerHTML = '';
 
-  contentDisplay.insertAdjacentHTML("afterbegin", `<img class="quote-image" src="${destination.image}" alt="${destination.alt}">`);
+  travelerContentDisplay.insertAdjacentHTML("afterbegin", `<img class="quote-image" src="${destination.image}" alt="${destination.alt}">`);
 
-  contentDisplay.insertAdjacentHTML("beforeend", `<p>YOUR ESTIMATED COST IS: ${tripCost.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>`);
+  travelerContentDisplay.insertAdjacentHTML("beforeend", `<p>YOUR ESTIMATED COST IS: ${tripCost.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>`);
 
   travelerModal.style.display = "block";
 }
@@ -76,6 +77,10 @@ export const hideQuote = () => {
   numTravelersInput.value = null;
   destinationInput.value = null;
   travelerModal.style.display = "none";
+}
+
+export const hideRequest = () => {
+  adminModal.style.display = "none";
 }
 
 export const displayAdminModal = (event, destinationsRepo, tripsRepo) => {
@@ -93,8 +98,8 @@ export const displayAdminModal = (event, destinationsRepo, tripsRepo) => {
     </section>
   </article>`
 
-  contentDisplay.innerHTML = '';
-  contentDisplay.insertAdjacentHTML("afterbegin", selectedTripHTML);
+  adminContentDisplay.innerHTML = '';
+  adminContentDisplay.insertAdjacentHTML("afterbegin", selectedTripHTML);
   adminModal.style.display = "block";
 }
 

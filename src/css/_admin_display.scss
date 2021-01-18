@@ -16,6 +16,10 @@
   .admin-modal {
     @include modalStyles;
 
+    .close-request {
+      @include closeButtonStyles;
+    }
+
     .pending-trip {
       @include tripStyles;
       padding-top: 0;

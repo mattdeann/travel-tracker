@@ -7,7 +7,8 @@ console.log('This is the JavaScript entry file - your code begins here.');
 
 // QUERY SELECTORS
 const quoteButton = document.querySelector('.quote-button');
-const closeQuoteButton = document.querySelector('.close');
+const closeQuoteButton = document.querySelector('.close-quote');
+const closeApprovalButton = document.querySelector('.close-approval');
 const requestButton = document.querySelector('.request-button');
 const dateInput = document.querySelector(".form-date");
 const durationInput = document.querySelector(".form-duration");
@@ -33,7 +34,8 @@ import {
   checkLoginInputs,
   displayDesiredElements,
   adminMain,
-  displayAdminModal
+  displayAdminModal,
+  hideRequest
 } from './domUpdates';
 import { 
   getData,
@@ -104,18 +106,23 @@ const createQuote = () => {
 
 const closeModal = () => {
   hideQuote();
+  hideRequest();
 }
 
-const submitTripRequest = () => {
+const submitTripRequest = event => {
+  event.preventDefault()
   const date = dateInput.value.toString();
   const formattedDate = date.replaceAll("-", "/");
   const duration = durationInput.value;
   const travelers = numTravelersInput.value;
   const destinationID = destinationsRepo.findIDByName(destinationInput.value);
+  console.log(date)
 
   Promise.resolve(postTrip(tripsRepo.allTrips.length + 1, traveler.id, destinationID, travelers, formattedDate, duration))
     .then(hideQuote())
     .then(populateTravelerMain())
+
+  console.log('done')
 }
 
 const displayRequest = event => {
@@ -148,6 +155,7 @@ const initializePage = () => {
 document.addEventListener("load", initializePage());
 quoteButton.addEventListener("click", createQuote);
 closeQuoteButton.addEventListener("click", closeModal);
+closeApprovalButton.addEventListener("click", closeModal);
 requestButton.addEventListener("click", submitTripRequest);
 loginButton.addEventListener("click", login);
 adminMain.addEventListener("click", displayRequest)
