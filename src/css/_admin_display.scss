@@ -1,9 +1,12 @@
 @import "variables";
+@import "trip_styles";
 
 @mixin adminDisplay() {
-  display: grid;
-  grid-template-rows: 2fr 10fr;
-  grid-template-columns: 1fr;
+  grid-row: 1 / -1;
+  grid-column: 1 / -1;
+  padding: 10px;
+  overflow-y: auto;
+  @include tripStyles;
 
   .admin-header {
     border: 2px solid $pink;
@@ -11,8 +14,14 @@
     grid-column: 1 / -1;
   }
 
-  .admin-main {
+  main {
     grid-row: 2 / -1;
     grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 15px;
+    padding: 10px;
+    overflow-y: auto;
+    @include tripStyles;
   }
 }

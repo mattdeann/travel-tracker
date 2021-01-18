@@ -149,7 +149,8 @@ export const displayDesiredElements = display => {
     travelerMain.style.visibility = "hidden";
     travelerAside.style.visibility = "hidden";
     travelerFooter.style.visibility = "hidden";
-    adminDisplay.style.display = "grid";
+    adminDisplay.style.display = "initial";
+    adminModal.style.visibility = "hidden";
     loginDisplay.style.visibility = "hidden";
   }
 }
