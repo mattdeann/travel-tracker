@@ -11,7 +11,6 @@ class TripsRepo {
     return this.allTrips.filter(trip => trip.status === "pending");
   }
 
-  // THIS NEEDS A TEST
   findTripByTripID(tripID) {
     return this.allTrips.find(trip => trip.id === parseInt(tripID));
   }

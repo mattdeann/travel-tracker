@@ -138,5 +138,4 @@ describe('TripsRepo', function() {
       "suggestedActivities": []
     }]);
   })
-
 });
