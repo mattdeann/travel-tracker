@@ -92,7 +92,7 @@ const getTravelerData = travelerID => {
 }
 
 const getTravelersData = () => {
-  getData('travelers')
+  return getData('travelers')
     .then(response => {
       travelersRepo = new TravelersRepo(response);
     })
