@@ -3,7 +3,7 @@ const expect = chai.expect;
 
 import TravelersRepo from '../src/jsClasses/travelersRepo';
 
-describe('Traveler', function() {
+describe('TravelersRepo', function() {
   let travelersRepoData;
   let travelersRepo;
   
