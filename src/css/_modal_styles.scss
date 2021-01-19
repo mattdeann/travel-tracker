@@ -45,6 +45,12 @@
       font-size: 1rem;
     }
 
+    .estimated-cost {
+      display: flex;
+      justify-content: center;
+      color: $light-blue;
+    }
+
     .request-button {
       font-style: italic;
       font-size: 1rem;

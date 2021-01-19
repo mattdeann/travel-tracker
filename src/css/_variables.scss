@@ -25,7 +25,7 @@ $grid-border: 5px solid $pink;
 };
 
 @mixin headerFooterStyles() {
-  background: linear-gradient(to bottom, $dark-purple, $darker-purple);
+  background: linear-gradient(to bottom, $dark-purple, $dark-purple, $darker-purple);
   border: $grid-border;
   margin: 3px;
 }

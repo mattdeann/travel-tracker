@@ -68,7 +68,7 @@ export const displayQuote = destinationsRepo => {
 
   travelerContentDisplay.innerHTML = '';
   travelerContentDisplay.insertAdjacentHTML("afterbegin", `<img class="quote-image" src="${destination.image}" alt="${destination.alt}">`);
-  travelerContentDisplay.insertAdjacentHTML("beforeend", `<p>YOUR ESTIMATED COST IS: ${tripCost.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>`);
+  travelerContentDisplay.insertAdjacentHTML("beforeend", `<p class="estimated-cost">YOUR ESTIMATED COST IS: ${tripCost.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>`);
   travelerModal.style.display = "block";
 }
 
