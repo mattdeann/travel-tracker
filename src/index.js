@@ -66,9 +66,11 @@ const populateTravelerMain = () => {
       traveler = new Traveler(response[0]);
       tripsRepo = new TripsRepo(response[1]);
       destinationsRepo = new DestinationsRepo(response[2]);
+    })
+    .then( () => {
       displayTravelerTrips(traveler, tripsRepo, destinationsRepo);
       displayTravelerAside(traveler, tripsRepo, destinationsRepo);
-    });
+    })
 }
 
 const populateAdminMain = () => {
@@ -78,9 +80,11 @@ const populateAdminMain = () => {
     .then(response => {
       tripsRepo = new TripsRepo(response[0]);
       destinationsRepo = new DestinationsRepo(response[1]);
+    })
+    .then( () => {
       displayAdminNav(travelersRepo, tripsRepo, destinationsRepo);
       displayPendingTrips(tripsRepo, destinationsRepo);
-    });
+    })
 }
 
 const getTravelerData = travelerID => {
