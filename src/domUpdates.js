@@ -151,7 +151,7 @@ export const displayPendingTrips = (tripsRepo, destinationsRepo) => {
         <p class="detail travler">TRAVELER ID: ${trip.userID}</p>
           <p class="detail date">${trip.date}</p>
           <p class="detail duration">${trip.duration} DAYS IN</p>
-          <p class-"detail destination">${destinationsRepo.findDestinationByID(trip.destinationID).destination}</p>
+          <p class="detail destination">${destinationsRepo.findDestinationByID(trip.destinationID).destination}</p>
           <p class="detail travelers">TRAVELERS: ${trip.travelers}</p>
           <p class="detail status">STATUS: ${trip.status}</p>
         </section>
