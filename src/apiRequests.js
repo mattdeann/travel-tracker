@@ -53,3 +53,19 @@ export const approveTrip = (tripID) => {
     .then(result => console.log(result))
     .catch(error => console.log('error', error));
 }
+
+export const denyTrip = (tripID) => {
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  var requestOptions = {
+    method: 'DELETE',
+    headers: myHeaders,
+    redirect: 'follow'
+  };
+
+  return fetch(`http://localhost:3001/api/v1/trips/${parseInt(tripID)}`, requestOptions)
+    .then(response => response.json())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+}

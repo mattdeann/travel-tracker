@@ -11,6 +11,7 @@ const closeQuoteButton = document.querySelector('.close-quote');
 const closeApprovalButton = document.querySelector('.close-approval');
 const requestButton = document.querySelector('.request-button');
 const approveButton = document.querySelector('.approve-button');
+const denyButton = document.querySelector('.deny-button');
 const dateInput = document.querySelector(".form-date");
 const durationInput = document.querySelector(".form-duration");
 const numTravelersInput = document.querySelector(".form-travelers");
@@ -43,7 +44,8 @@ import {
 import { 
   getData,
   postTrip,
-  approveTrip
+  approveTrip,
+  denyTrip
 } from './apiRequests';
 
 // Global Variables
@@ -138,6 +140,14 @@ const approveRequest = () => {
     .then(hideRequest())
 }
 
+const denyRequest = () => {
+  const tripID = modalContent.id;
+
+  Promise.resolve(denyTrip(tripID))
+    .then(populateAdminMain())
+    .then(hideRequest())
+}
+
 const login = () => {
   const username = usernameInput.value;
   const password = passwordInput.value;
@@ -168,3 +178,4 @@ requestButton.addEventListener("click", submitTripRequest);
 loginButton.addEventListener("click", login);
 adminMain.addEventListener("click", displayRequest);
 approveButton.addEventListener("click", approveRequest);
+denyButton.addEventListener("click", denyRequest);
