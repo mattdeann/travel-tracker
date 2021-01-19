@@ -16,7 +16,6 @@ class TripsRepo {
     return this.allTrips.find(trip => trip.id === parseInt(tripID));
   }
 
-  //TWo functions belo should have ANOTHER HELPER FUNCTION probs, CODE SMELLS BAD
   totalAnnualTripsCost(travelerID, year, destinationsRepo) {
     const annualTrips = this.allTrips.filter(trip => trip.userID === travelerID && trip.date.includes(year));
 

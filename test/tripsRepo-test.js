@@ -88,14 +88,6 @@ describe('TripsRepo', function() {
     }]);
   })
 
-  it('should return all a travelers annual trips', function() {
-    expect(tripsRepo.totalAnnualTripsCost(2, 2020, destinationsRepo)).to.equal(6270);
-  })
-
-  it('should return the total for pending trips', function() {
-    expect(tripsRepo.totalPendingTripsCost(1, destinationsRepo)).to.equal(1738);
-  })
-
   it('should return all pending trips', function() {
     expect(tripsRepo.filterPendingTrips()).to.deep.equal([{
       "id": 1,
@@ -107,6 +99,27 @@ describe('TripsRepo', function() {
       "status": "pending",
       "suggestedActivities": []
     }]);
+  })
+
+  it('should return all a travelers annual trips', function() {
+    expect(tripsRepo.findTripByTripID(1)).to.deep.equal({
+      "id": 1,
+      "userID": 1,
+      "destinationID": 2,
+      "travelers": 1,
+      "date": "2019/09/16",
+      "duration": 8,
+      "status": "pending",
+      "suggestedActivities": []
+    });
+  })
+
+  it('should return all a travelers annual trips', function() {
+    expect(tripsRepo.totalAnnualTripsCost(2, 2020, destinationsRepo)).to.equal(6270);
+  })
+
+  it('should return the total for pending trips', function() {
+    expect(tripsRepo.totalPendingTripsCost(1, destinationsRepo)).to.equal(1738);
   })
 
   it('should return the total in commission for annual trips', function() {
