@@ -8,7 +8,7 @@ describe('Traveler', function() {
   let travelersRepo;
   
   beforeEach(function() {
-    travelersRepoData = [
+    travelersRepoData = {"travelers": [
       {
         "id": 1,
         "name": "Ham Leadbeater",
@@ -18,7 +18,8 @@ describe('Traveler', function() {
         "id": 2,
         "name": "Rachael Vaughten",
         "travelerType": "thrill-seeker"
-      }];
+      }
+    ]};
 
     travelersRepo = new TravelersRepo(travelersRepoData);
   })
@@ -41,4 +42,11 @@ describe('Traveler', function() {
       }]);
   })
 
+  it('should return a traveler by ID', function() {
+    expect(travelersRepo.checkForID(1)).to.deep.equal({
+      "id": 1,
+      "name": "Ham Leadbeater",
+      "travelerType": "relaxer"
+    });
+  })
 });

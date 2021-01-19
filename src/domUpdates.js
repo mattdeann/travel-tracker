@@ -87,7 +87,7 @@ export const hideRequest = () => {
 export const constructTodaysTravelers = (travelersRepo, tripsRepo) => {
   const todaysTrips = tripsRepo.filterTripsToday("2020/06/22");
   const travelerNames = todaysTrips.map(trip => {
-    const traveler = travelersRepo.findTravelerNameByID(trip.userID);
+    const traveler = travelersRepo.checkForID(trip.userID);
     return traveler.name;
   })
 
