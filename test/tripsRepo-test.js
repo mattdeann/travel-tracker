@@ -13,11 +13,11 @@ describe('TripsRepo', function() {
       {
         "id": 1,
         "userID": 1,
-        "destinationID": 49,
+        "destinationID": 2,
         "travelers": 1,
         "date": "2019/09/16",
         "duration": 8,
-        "status": "approved",
+        "status": "pending",
         "suggestedActivities": []
       },
       {
@@ -27,7 +27,7 @@ describe('TripsRepo', function() {
         "travelers": 5,
         "date": "2020/10/04",
         "duration": 18,
-        "status": "pending",
+        "status": "approved",
         "suggestedActivities": []
       }
     ]}
@@ -55,11 +55,11 @@ describe('TripsRepo', function() {
       {
         "id": 1,
         "userID": 1,
-        "destinationID": 49,
+        "destinationID": 2,
         "travelers": 1,
         "date": "2019/09/16",
         "duration": 8,
-        "status": "approved",
+        "status": "pending",
         "suggestedActivities": []
       },
       {
@@ -69,7 +69,7 @@ describe('TripsRepo', function() {
         "travelers": 5,
         "date": "2020/10/04",
         "duration": 18,
-        "status": "pending",
+        "status": "approved",
         "suggestedActivities": []
       }
     ]);
@@ -83,7 +83,7 @@ describe('TripsRepo', function() {
       "travelers": 5,
       "date": "2020/10/04",
       "duration": 18,
-      "status": "pending",
+      "status": "approved",
       "suggestedActivities": []
     }]);
   })
@@ -93,17 +93,17 @@ describe('TripsRepo', function() {
   })
 
   it('should return the total for pending trips', function() {
-    expect(tripsRepo.totalPendingTripsCost(2, destinationsRepo)).to.equal(6270);
+    expect(tripsRepo.totalPendingTripsCost(1, destinationsRepo)).to.equal(1738);
   })
 
   it('should return all pending trips', function() {
     expect(tripsRepo.filterPendingTrips()).to.deep.equal([{
-      "id": 2,
-      "userID": 2,
+      "id": 1,
+      "userID": 1,
       "destinationID": 2,
-      "travelers": 5,
-      "date": "2020/10/04",
-      "duration": 18,
+      "travelers": 1,
+      "date": "2019/09/16",
+      "duration": 8,
       "status": "pending",
       "suggestedActivities": []
     }]);
@@ -121,7 +121,7 @@ describe('TripsRepo', function() {
       "travelers": 5,
       "date": "2020/10/04",
       "duration": 18,
-      "status": "pending",
+      "status": "approved",
       "suggestedActivities": []
     }]);
   })
