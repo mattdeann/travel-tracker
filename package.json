@@ -1,25 +1,29 @@
 {
-  "name": "webpack-starter-kit",
+  "name": "travel-tracker",
   "version": "1.0.0",
-  "description": "Project starter kit using webpack, mocha, chai, and SCSS/SASS enabled",
+  "description": "Vanilla JS / HTML / SCSS project built using starter kit with webpack, mocha, chai, and SCSS/SASS enabled",
   "main": "src/index.js",
+  "homepage": "http://mattdeann.github.io/travel-tracker",
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack",
     "test": "mochapack 'test/**/*.js'",
-    "lint": "./node_modules/.bin/eslint 'src/**.js' 'test/**.js'"
+    "lint": "./node_modules/.bin/eslint 'src/**.js' 'test/**.js'",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/turingschool-examples/webpack-starter-kit.git"
+    "url": "git+https://github.com/mattdeann/travel-tracker.git"
   },
-  "author": "Turing School of Software and Design",
+  "author": "Matthew Dean",
   "license": "MIT",
   "devDependencies": {
     "chai": "^4.2.0",
     "css-loader": "^5.0.1",
     "eslint": "^7.17.0",
     "file-loader": "^6.2.0",
+    "gh-pages": "^3.1.0",
     "html-webpack-plugin": "^4.5.1",
     "mocha": "^8.2.1",
     "mochapack": "^2.0.6",
