@@ -46,7 +46,7 @@ export const displayTravelerTrips = (traveler, tripsRepo, destinationsRepo) => {
 }
 
 export const displayTravelerAside = (traveler, tripsRepo, destinationsRepo) => {
-  const thisYear = new Date().toJSON().slice(0,4).replace(/-/g, '/');
+  const thisYear = new Date().toJSON().slice(0, 4).replace(/-/g, '/');
   const annualTotal = tripsRepo.totalAnnualTripsCost(traveler.id, thisYear, destinationsRepo);
   const pendingTotal = tripsRepo.totalPendingTripsCost(traveler.id, destinationsRepo);
 
