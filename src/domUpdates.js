@@ -1,5 +1,6 @@
 // Query Selectors
 export const loginDisplay = document.querySelector(".login-display");
+export const travelerDisplay = document.querySelector(".traveler-display")
 export const travelerHeader = document.querySelector(".traveler-header");
 export const travelerNav = document.querySelector(".traveler-nav");
 export const travelerModal = document.querySelector(".traveler-modal");
@@ -176,33 +177,16 @@ export const checkLoginInputs = (username, password, travelersRepo) => {
 // REFACTOR THIS TO ADD A CLASS OF DISPLAY: HIDDEN???
 export const displayDesiredElements = display => {
   if (display === 'login') {
-    travelerHeader.style.visibility = "hidden";
-    travelerNav.style.visibility = "hidden";
-    travelerModal.style.visibility = "hidden";
-    travelerMain.style.visibility = "hidden";
-    travelerAside.style.visibility = "hidden";
-    travelerFooter.style.visibility = "hidden";
-    adminDisplay.style.display = "none";
-    loginDisplay.style.visibility = "visible";
+    travelerDisplay.classList.add("hidden");
+    adminDisplay.classList.add("hidden");
+    loginDisplay.classList.remove = "hidden";
   } else if (display === 'traveler') {
-    travelerHeader.style.visibility = "visible";
-    travelerNav.style.visibility = "visible";
-    travelerModal.style.visibility = "visible";
-    travelerMain.style.visibility = "visible";
-    travelerAside.style.visibility = "visible";
-    travelerFooter.style.visibility = "visible";
-    adminDisplay.style.display = "none";
-    loginDisplay.style.visibility = "hidden";
+    travelerDisplay.classList.remove("hidden");
+    adminDisplay.classList.add("hidden");
+    loginDisplay.classList.add("hidden");
   } else if (display === 'admin') {
-    travelerHeader.style.visibility = "hidden";
-    travelerNav.style.visibility = "hidden";
-    travelerModal.style.visibility = "hidden";
-    travelerMain.style.visibility = "hidden";
-    travelerAside.style.visibility = "hidden";
-    travelerFooter.style.visibility = "hidden";
-    adminDisplay.style.display = "grid";
-    adminModal.style.visibility = "visible";
-    loginDisplay.style.visibility = "hidden";
+    travelerDisplay.classList.add("hidden");
+    adminDisplay.classList.remove("hidden");
+    loginDisplay.classList.add("hidden");
   }
 }
-

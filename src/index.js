@@ -126,8 +126,7 @@ const submitTripRequest = () => {
   const duration = durationInput.value;
   const travelers = numTravelersInput.value;
   const destinationID = destinationsRepo.findIDByName(destinationInput.value);
-
-  Promise.resolve(postTrip(tripsRepo.allTrips.length + 1, traveler.id, destinationID, travelers, formattedDate, duration))
+  Promise.resolve(postTrip(Date.now(), traveler.id, destinationID, travelers, formattedDate, duration))
     .then(populateTravelerMain())
     .then(hideQuote())
 }
