@@ -52,20 +52,18 @@ describe('destinationsRepo', function() {
         "alt": "city with boats on the water during the day time"
       } 
     ]);
+  });
 
-    it('should return a destination object when given a destination ID', function() {
-      expect(destinationsRepo.findDestinationByID(1)).to.deep.equal(
-        {
-          "id": 1,
-          "destination": "Lima, Peru",
-          "estimatedLodgingCostPerDay": 70,
-          "estimatedFlightCostPerPerson": 400,
-          "image": "https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80",
-          "alt": "overview of city buildings with a clear sky"
-        }
-      );
-    })
-  })
+  it('should return a destination object when given a destination ID', function() {
+    expect(destinationsRepo.findDestinationByID(1)).to.deep.equal({
+      "id": 1,
+      "destination": "Lima, Peru",
+      "estimatedLodgingCostPerDay": 70,
+      "estimatedFlightCostPerPerson": 400,
+      "image": "https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80",
+      "alt": "overview of city buildings with a clear sky"
+    });
+  });
   
   it('should calculate the cost of a trip given the duration, number of travelers, and destination ID', function() {
     const duration = 1;

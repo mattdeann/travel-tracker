@@ -11,6 +11,7 @@ const closeQuoteButton = document.querySelector('.close-quote');
 const closeApprovalButton = document.querySelector('.close-approval');
 const requestButton = document.querySelector('.request-button');
 const approveButton = document.querySelector('.approve-button');
+const denyButton = document.querySelector('.deny-button');
 const dateInput = document.querySelector(".form-date");
 const durationInput = document.querySelector(".form-duration");
 const numTravelersInput = document.querySelector(".form-travelers");
@@ -43,7 +44,8 @@ import {
 import { 
   getData,
   postTrip,
-  approveTrip
+  approveTrip,
+  denyTrip
 } from './apiRequests';
 
 // Global Variables
@@ -64,9 +66,11 @@ const populateTravelerMain = () => {
       traveler = new Traveler(response[0]);
       tripsRepo = new TripsRepo(response[1]);
       destinationsRepo = new DestinationsRepo(response[2]);
+    })
+    .then( () => {
       displayTravelerTrips(traveler, tripsRepo, destinationsRepo);
       displayTravelerAside(traveler, tripsRepo, destinationsRepo);
-    });
+    })
 }
 
 const populateAdminMain = () => {
@@ -76,9 +80,11 @@ const populateAdminMain = () => {
     .then(response => {
       tripsRepo = new TripsRepo(response[0]);
       destinationsRepo = new DestinationsRepo(response[1]);
+    })
+    .then( () => {
       displayAdminNav(travelersRepo, tripsRepo, destinationsRepo);
       displayPendingTrips(tripsRepo, destinationsRepo);
-    });
+    })
 }
 
 const getTravelerData = travelerID => {
@@ -86,7 +92,7 @@ const getTravelerData = travelerID => {
 }
 
 const getTravelersData = () => {
-  getData('travelers')
+  return getData('travelers')
     .then(response => {
       travelersRepo = new TravelersRepo(response);
     })
@@ -120,8 +126,7 @@ const submitTripRequest = () => {
   const duration = durationInput.value;
   const travelers = numTravelersInput.value;
   const destinationID = destinationsRepo.findIDByName(destinationInput.value);
-
-  Promise.resolve(postTrip(tripsRepo.allTrips.length + 1, traveler.id, destinationID, travelers, formattedDate, duration))
+  Promise.resolve(postTrip(Date.now(), traveler.id, destinationID, travelers, formattedDate, duration))
     .then(populateTravelerMain())
     .then(hideQuote())
 }
@@ -134,6 +139,14 @@ const approveRequest = () => {
   const tripID = modalContent.id;
 
   Promise.resolve(approveTrip(tripID))
+    .then(populateAdminMain())
+    .then(hideRequest())
+}
+
+const denyRequest = () => {
+  const tripID = modalContent.id;
+
+  Promise.resolve(denyTrip(tripID))
     .then(populateAdminMain())
     .then(hideRequest())
 }
@@ -168,3 +181,4 @@ requestButton.addEventListener("click", submitTripRequest);
 loginButton.addEventListener("click", login);
 adminMain.addEventListener("click", displayRequest);
 approveButton.addEventListener("click", approveRequest);
+denyButton.addEventListener("click", denyRequest);

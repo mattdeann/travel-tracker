@@ -17,6 +17,7 @@
         <section class="admin-content-display content-display">
         </section>
         <button class="approve-button">APPROVE</button>
+        <button class="deny-button">DENY</button>
       </article>
     </article>
     <nav class="admin-nav" tabindex="0">
@@ -34,39 +35,40 @@
     <input type="text" class="form-password" id="form-password">
     <button class="login-button">ENTER SITE</button>
   </section>
-  <header class="traveler-header" tabindex="0">
-    <h1>TIME TRAVELERS</h1>
-  </header>
-  <nav class="traveler-nav" role="navigation" tabindex="0">
-    <article class="trip-request">
-      <p>PLAN A TRIP!</p>
-      <label for="form-date">DEPARTURE DATE</label>
-      <input type="date" class="form-date" id="form-date">
-      <label for="form-duration">DAYS</label>
-      <input type="number" class="form-duration" id="form-duration">
-      <label for="form-travelers">TRAVELERS</label>
-      <input type="number" class="form-travelers" id="form-travelers">
-      <label for="form-destination">DESTINATION</label>
-      <input class="form-destination" id="form-destination">
-      <button class="quote-button">GET A QUOTE</button>
+  <section class="traveler-display">
+    <header class="traveler-header" tabindex="0">
+      <h1>TIME TRAVELERS</h1>
+    </header>
+    <nav class="traveler-nav" role="navigation" tabindex="0">
+      <article class="trip-request">
+        <p>PLAN A TRIP!</p>
+        <label for="form-date">DEPARTURE DATE</label>
+        <input type="date" class="form-date" id="form-date">
+        <label for="form-duration">DAYS</label>
+        <input type="number" class="form-duration" id="form-duration">
+        <label for="form-travelers">TRAVELERS</label>
+        <input type="number" class="form-travelers" id="form-travelers">
+        <label for="form-destination">DESTINATION</label>
+        <input class="form-destination" id="form-destination">
+        <button class="quote-button">GET A QUOTE</button>
+      </article>
+    </nav>
+    <article class="traveler-modal" tabindex="0">
+      <article class="modal-content">
+        <section class="close-quote">CLOSE</section>
+        <section class="traveler-content-display content-display">
+        </section>
+        <button class="request-button">BOOK THIS VACATION</button>
+      </article>
     </article>
-  </nav>
-  <article class="traveler-modal" tabindex="0">
-    <article class="modal-content">
-      <section class="close-quote">CLOSE</section>
-      <section class="traveler-content-display content-display">
-      </section>
-      <button class="request-button">BOOK THIS VACATION</button>
-    </article>
-  </article>
-  <main class="traveler-main" tabindex="0">
-    <h1>ALL TRIPS</h1>
-  </main>
-  <aside class="traveler-aside" tabindex="0">
-    <h1>PROFILE</h1>
-  </aside>
-  <footer class="traveler-footer" tabindex="0">
-  </footer>
-
+    <main class="traveler-main" tabindex="0">
+      <h1>ALL TRIPS</h1>
+    </main>
+    <aside class="traveler-aside" tabindex="0">
+      <h1>PROFILE</h1>
+    </aside>
+    <footer class="traveler-footer" tabindex="0">
+    </footer>
+  </section>
 </body>
 </html>
