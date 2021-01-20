@@ -1,6 +1,14 @@
-// DOCUMENT
-
+// TYPE / COLORS
 $font: BlenderProBold, sans-serif;
+$black: #09071a;
+$darker-purple: #191449;
+$dark-purple: #3D0E53;
+$purple: #B05CB4;
+$pink: #D61289;
+$blue: #2B7FB5;
+$light-blue: #18F5FE;
+$yellow: #F9F300;
+$grid-border: 5px solid $pink;
 
 // MIXINS
 @mixin gridDisplay($columns, $rows) {
@@ -17,7 +25,7 @@ $font: BlenderProBold, sans-serif;
 };
 
 @mixin headerFooterStyles() {
-  background: linear-gradient(to bottom, $dark-purple, $darker-purple);
+  background: linear-gradient(to bottom, $dark-purple, $dark-purple, $darker-purple);
   border: $grid-border;
   margin: 3px;
 }
@@ -62,7 +70,6 @@ $font: BlenderProBold, sans-serif;
   }
 }
 
-
 @mixin grow() {
     transition: all .3s ease-in-out; 
   
@@ -91,50 +98,19 @@ $font: BlenderProBold, sans-serif;
 }
 
 @mixin scrollbar() {
-  /* width */
 ::-webkit-scrollbar {
   width: 15px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   background: white;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: $yellow;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: $light-blue;
 }
 }
-
-.hidden {
-  display: none;
-}
-
-// .pop-up {
-//   z-index: 1;
-// }
-
-// COLORS
-$black: #09071a;
-
-$darker-purple: #191449;
-
-$dark-purple: #3D0E53;
-
-$purple: #B05CB4;
-
-$pink: #D61289;
-
-$blue: #2B7FB5;
-
-$light-blue: #18F5FE;
-
-$yellow: #F9F300;
-
-$grid-border: 5px solid $pink;

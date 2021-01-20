@@ -33,9 +33,11 @@ export const displayTravelerTrips = (traveler, tripsRepo, destinationsRepo) => {
         <section class="trip-summary">
           <p class="detail date">${trip.date}</p>
           <p class="detail duration">${trip.duration} DAYS IN</p>
-          <p class="detail destination">${destinationsRepo.findDestinationByID(trip.destinationID).destination}</p>
-          <p class="detail travelers">TRAVELERS: ${trip.travelers}</p>
-          <p class="detail status">STATUS: ${trip.status}</p>
+          <p class="detail destination value">${destinationsRepo.findDestinationByID(trip.destinationID).destination}</p>
+          <p class="detail travelers">TRAVELERS</p>
+          <p class="detail value">${trip.travelers}</p>
+          <p class="detail status">STATUS</p>
+          <p class="detail value">${trip.status}</p>
         </section>
       </article>
     `);
@@ -66,7 +68,7 @@ export const displayQuote = destinationsRepo => {
 
   travelerContentDisplay.innerHTML = '';
   travelerContentDisplay.insertAdjacentHTML("afterbegin", `<img class="quote-image" src="${destination.image}" alt="${destination.alt}">`);
-  travelerContentDisplay.insertAdjacentHTML("beforeend", `<p>YOUR ESTIMATED COST IS: ${tripCost.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>`);
+  travelerContentDisplay.insertAdjacentHTML("beforeend", `<p class="estimated-cost">YOUR ESTIMATED COST IS: ${tripCost.toLocaleString("en-US", {style: "currency", currency: "USD"})}</p>`);
   travelerModal.style.display = "block";
 }
 
@@ -114,8 +116,8 @@ export const displayAdminModal = (event, destinationsRepo, tripsRepo) => {
       <p class="detail date">${trip.date}</p>
       <p class="detail duration">${trip.duration} DAYS IN</p>
       <p class="detail destination">${destinationsRepo.findDestinationByID(trip.destinationID).destination}</p>
-      <p class="detail travelers">TRAVELERS: ${trip.travelers}</p>
-      <p class="detail status">STATUS: ${trip.status}</p>
+      <p class="detail travelers">TRAVELERS</p><p>${trip.travelers}</p>
+      <p class="detail status">STATUS</p><p>${trip.status}</p>
     </section>
   </article>`
 
@@ -149,7 +151,7 @@ export const displayPendingTrips = (tripsRepo, destinationsRepo) => {
         <p class="detail travler">TRAVELER ID: ${trip.userID}</p>
           <p class="detail date">${trip.date}</p>
           <p class="detail duration">${trip.duration} DAYS IN</p>
-          <p class-"detail destination">${destinationsRepo.findDestinationByID(trip.destinationID).destination}</p>
+          <p class="detail destination">${destinationsRepo.findDestinationByID(trip.destinationID).destination}</p>
           <p class="detail travelers">TRAVELERS: ${trip.travelers}</p>
           <p class="detail status">STATUS: ${trip.status}</p>
         </section>
